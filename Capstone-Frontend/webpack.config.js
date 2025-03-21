@@ -1,42 +1,52 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');  
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-    entry: './src/index.js',
-    output: {
-        filename: 'main.js',
-        path: path.resolve(__dirname, 'build'),
+  entry: "./src/index.js",
+  output: {
+    filename: "main.js",
+    path: path.resolve(__dirname, "build"),
+    publicPath: "/",
+  },
+  devServer: {
+    historyApiFallback: true,
+    static: {
+      directory: path.join(__dirname, "public"),
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: path.join(__dirname, 'public', 'index.html'),
-        }),
-        new MiniCssExtractPlugin()
+    compress: true,
+    port: 3000,
+    open: true,
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, "public", "index.html"),
+    }),
+    new MiniCssExtractPlugin(),
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: [
+              ["@babel/preset-env", { targets: "defaults" }],
+              ["@babel/preset-react", { runtime: "automatic" }],
+            ],
+          },
+        },
+      },
+      {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
+      },
+      {
+        test: /\.(png|jpe?g|svg)$/i,
+        type: "asset/resource",
+      },
     ],
-    module: {
-        rules: [
-            {
-                test: /\.(js|jsx)$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: [
-                            ['@babel/preset-env', { targets: 'defaults' }],
-                            ['@babel/preset-react', { runtime: 'automatic' }]
-                        ]
-                    }
-                }
-            },
-            {
-                test: /\.css$/i,
-                use: [MiniCssExtractPlugin.loader, "css-loader"],
-            },
-            {
-            test: /\.(png|jpe?g|svg)$/i,
-            type: 'asset/resource'
-        }
-        ]
-    }
+  },
 };

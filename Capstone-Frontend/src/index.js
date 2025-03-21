@@ -1,7 +1,11 @@
-import ReactDOM from 'react-dom/client';
-import Hello from './Hello.jsx';
+import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router";
+import App from "./App.jsx";
+import './css/style.css';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Hello />
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
 );
