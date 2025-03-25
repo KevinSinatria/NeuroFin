@@ -10,7 +10,7 @@ const Navbar = () => {
           <img src={NeoLogo} alt="" className="w-[192px]" />
         </div>
         <div className="ml-48">
-          <ul className="flex gap-12 font-normal text-base text-slate-500">
+          <ul className="flex gap-12 font-normal text-base text-slate-600">
             <NavLink
               to="#"
               text="Tentang Kami"
@@ -23,7 +23,7 @@ const Navbar = () => {
             />
             <NavLink
               to="#"
-              text="Cara Pakai"
+              text="Cara Penggunaan"
               className="hover:underline transition-all"
             />
           </ul>

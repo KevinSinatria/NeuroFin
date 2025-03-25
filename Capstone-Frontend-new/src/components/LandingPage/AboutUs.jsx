@@ -8,15 +8,15 @@ import OCR from "../../assets/img/AboutUs/OCR.png";
 
 const AboutUs = () => {
   return (
-    <div className="flex flex-col my-20">
+    <section className="flex flex-col my-20 scroll-mt-24" id="aboutUs">
       <div className="flex flex-col items-center">
         <h2 className="text-xl">About Us</h2>
-        <h2 className="font-semibold text-3xl">Tentang dan Fitur</h2>
+        <h2 className="font-semibold text-2xl md:text-3xl">Tentang dan Fitur</h2>
         <div className="mt-2">
           <div className="border-b-6 border-[#38C3F5] flex items-center w-28"></div>
         </div>
-        <div className="px-28 py-10 text-center">
-          <p className="text-xl">
+        <div className="px-16 md:px-24 lg:px-28 py-10 text-center">
+          <p className="text-base md:text-lg">
             <span className="text-[#38C3F5] font-bold">NeuroFin</span> adalah
             sebuah aplikasi website yang bertujuan untuk
             <span className="text-[#FFA400] font-semibold">
@@ -28,7 +28,7 @@ const AboutUs = () => {
               {" "}
               membangun kebiasaan baik
             </span>{" "}
-            para remaja dari
+            para generasi muda dan siapa saja dari
             <span className="text-[#FFA400] font-semibold">
               {" "}
               waktu ke waktu{" "}
@@ -54,33 +54,33 @@ const AboutUs = () => {
           </p>
         </div>
       </div>
-      <div className="flex px-50 py-10 justify-between">
-        <div className="flex flex-col items-center text-center max-w-[50px]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 px-50 py-10">
+        <div className="flex flex-col items-center justify-center justify-self-center text-center max-w-[50px]">
           <img src={freeTest} alt="image" className="max-w-[60px]" />
-          <h4 className="text-xl text-[#FFA400]">Test Gratis</h4>
+          <h4 className="text-base md:text-lg text-[#FFA400]">Test Gratis</h4>
         </div>
-        <div className="flex flex-col items-center text-center max-w-[50px]">
+        <div className="flex flex-col items-center justify-center justify-self-center text-center max-w-[50px]">
           <img src={gamifiedChallenges} alt="img" className="max-w-[60px]" />
-          <h4 className="text-xl text-[#FFA400]">Tantangan Gamifikasi</h4>
+          <h4 className="text-base md:text-lg text-[#FFA400]">Tantangan Gamifikasi</h4>
         </div>
-        <div className="flex flex-col items-center text-center max-w-[50px]">
+        <div className="flex flex-col items-center justify-center justify-self-center text-center max-w-[50px]">
           <img src={OCR} alt="img" className="max-w-[60px]" />
-          <h4 className="text-xl text-[#FFA400]">OCR</h4>
+          <h4 className="text-base md:text-lg text-[#FFA400]">OCR</h4>
         </div>
-        <div className="flex flex-col items-center text-center max-w-[50px]">
+        <div className="flex flex-col items-center justify-center justify-self-center text-center max-w-[50px]">
           <img src={metrikProgress} alt="img" className="max-w-[60px]" />
-          <h4 className="text-xl text-[#FFA400]">Metrik Progress</h4>
+          <h4 className="text-base md:text-lg text-[#FFA400]">Metrik Progress</h4>
         </div>
-        <div className="flex flex-col items-center text-center max-w-[50px]">
+        <div className="flex flex-col items-center justify-center justify-self-center text-center max-w-[50px]">
           <img src={leaderboards} alt="img" className="max-w-[60px]" />
-          <h4 className="text-xl text-[#FFA400]">Papan Peringkat</h4>
+          <h4 className="text-base md:text-lg text-[#FFA400]">Papan Peringkat</h4>
         </div>
-        <div className="flex flex-col items-center text-center max-w-[50px]">
+        <div className="flex flex-col items-center justify-center justify-self-center text-center max-w-[50px]">
           <img src={bank} alt="img" className="max-w-[60px]" />
-          <h4 className="text-xl text-[#FFA400]">Tanpa Integrasi Bank</h4>
+          <h4 className="text-base md:text-lg text-[#FFA400]">Tanpa Integrasi Bank</h4>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

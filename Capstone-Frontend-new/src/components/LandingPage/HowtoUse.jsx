@@ -1,0 +1,106 @@
+import React from "react";
+import register from "../../assets/img/HowtoUse/daftar-sekarang.png";
+import setGoals from "../../assets/img/HowtoUse/set-goals.png";
+import syaratKetentuan from "../../assets/img/HowtoUse/syarat-ketentuan.png";
+import tantangan from "../../assets/img/HowtoUse/tantangan.png";
+
+const HowtoUse = () => {
+  return (
+    <section className="flex flex-col scroll-mt-26" id="howToUse">
+      <div className="flex flex-col items-center">
+        <h2 className="text-xl">How to Use</h2>
+        <h2 className="font-semibold text-3xl">Cara Penggunaan</h2>
+        <div className="mt-2">
+          <div className="border-b-6 border-[#38C3F5] flex items-center w-28"></div>
+        </div>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-10 pt-8 mt-10 mb-12">
+        <div
+          className="flex flex-col justify-center items-center gap-4 px-10 py-10 border-2 border-slate-500 rounded-[18px] shadow-xs shadow-sky-300 flex-1"
+        >
+          <figure>
+            <img src={syaratKetentuan} alt="image" className="max-w-[100px]" />
+          </figure>
+          <h3 className="text-lg font-semibold text-[#38C3F5]">
+            Baca Syarat & Ketentuan
+          </h3>
+          <p className="text-xs text-center">
+            Pahami aturan layanan NeuroFin agar kamu tahu cara kerja dan
+            manfaatnya dengan jelas.
+          </p>
+          <ul>
+            <NavLink
+              text="Syarat & Ketentuan →"
+              to="#"
+              className="hover:underline text-[#0061E0]"
+            />
+          </ul>
+        </div>
+        <div className="flex flex-col justify-center items-center gap-4 px-10 py-10 border-2 border-slate-500 rounded-[18px] shadow-xs shadow-sky-300 flex-1">
+          <figure>
+            <img src={register} alt="image" className="max-w-[100px]" />
+          </figure>
+          <h3 className="text-lg font-semibold text-[#38C3F5]">
+            Daftar di NeuroFin
+          </h3>
+          <p className="text-xs text-center">
+            Buat akun untuk mendapatkan rekomendasi finansial yang tepat.
+          </p>
+          <ul>
+            <NavLink
+              text="Daftar →"
+              to="#"
+              className="hover:underline text-[#0061E0]"
+            />
+          </ul>
+        </div>
+        <div className="flex flex-col justify-center items-center gap-4 px-10 py-10 border-2 border-slate-500 rounded-[18px] shadow-xs shadow-sky-300 flex-1">
+          <figure>
+            <img src={setGoals} alt="image" className="max-w-[100px]" />
+          </figure>
+          <h3 className="text-lg font-semibold text-[#38C3F5]">Set Goals</h3>
+          <p className="text-xs text-center">
+            Tentukan tujuan keuanganmu, mulai dari menabung, investasi, hingga
+            mengatur pengeluaran dengan lebih baik.
+          </p>
+          <ul>
+            <NavLink
+              text="Mulai sekarang →"
+              to="#"
+              className="hover:underline text-[#0061E0]"
+            />
+          </ul>
+        </div>
+        <div className="flex flex-col justify-center items-center gap-4 px-10 py-10 border-2 border-slate-500 rounded-[18px] shadow-xs shadow-sky-300 flex-1">
+          <figure>
+            <img src={tantangan} alt="image" className="max-w-[100px]" />
+          </figure>
+          <h3 className="text-lg font-semibold text-[#38C3F5]">
+            Selesaikan Tantangan
+          </h3>
+          <p className="text-xs text-center">
+            Ikuti tantangan finansial untuk melatih kebiasaan baik dalam
+            mengatur uang dan investasi.
+          </p>
+          <ul>
+            <NavLink
+              text="Mulai sekarang →"
+              to="#"
+              className="hover:underline text-[#0061E0]"
+            />
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const NavLink = ({ text, to, className, style }) => (
+  <li className={className}>
+    <a href={to} style={style}>
+      {text}
+    </a>
+  </li>
+);
+
+export default HowtoUse;
