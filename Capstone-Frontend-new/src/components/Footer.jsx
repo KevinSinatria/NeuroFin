@@ -12,8 +12,8 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0D263B]">
-      <div className="flex flex-col gap-10 px-20 md:px-28 lg:px-42 py-10 md:py-15 lg:py-20">
+    <footer className="bg-linear-to-t/srgb from-90% md:from-82% from-[#0D263B] to-100% to-white">
+      <div className="flex flex-col gap-10 px-20 md:px-28 lg:px-42 py-30 lg:py-40">
         <div className="flex @max-xs:px-12 @max-xs:py-8 flex-col lg:flex-row gap-20 justify-between">
           <div className="flex flex-col gap-4 flex-1">
             <figure>
@@ -60,6 +60,9 @@ const Footer = () => {
             </h2>
             <ul className="flex flex-col gap-4 list-none">
               <li className="text-white hover:underline">
+                <a href="/#">Home</a>
+              </li>
+              <li className="text-white hover:underline">
                 <a href="#finTest">Cek Keuangan</a>
               </li>
               <li className="text-white hover:underline">
@@ -97,6 +100,7 @@ const Footer = () => {
             </ul>
           </div>
         </div>
+        <hr className="text-white" />
         <div>
           <p className="text-white">
             © Copyright NeuroFin 2025 All Right Reserved.
