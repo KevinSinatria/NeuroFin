@@ -2,7 +2,7 @@ import React from "react";
 
 const Content = () => {
   return (
-    <div className="bg-slate-100 lg:py-8 lg:px-8 w-auto">
+    <div className="bg-slate-100 lg:py-8 lg:px-8 w-auto overflow-y-auto">
       <p className="mb-20">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, hic
         accusamus fuga eum corrupti quisquam numquam fugiat impedit ab dolorum,
@@ -22,6 +22,38 @@ const Content = () => {
         illo? Adipisci nostrum fuga sequi blanditiis quis minus itaque amet
         cumque, culpa earum consectetur? Corrupti velit vitae laudantium odio
         sint?
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur
+        quae doloribus similique, expedita accusamus maxime perferendis, fugiat
+        error magni, tempora temporibus ducimus necessitatibus exercitationem!
+        Consectetur dolore minima accusantium harum laboriosam totam labore
+        facilis officia ipsa non, provident veniam quidem et, cumque vero cum
+        corrupti maiores praesentium maxime velit perferendis repellendus!
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur
+        quae doloribus similique, expedita accusamus maxime perferendis, fugiat
+        error magni, tempora temporibus ducimus necessitatibus exercitationem!
+        Consectetur dolore minima accusantium harum laboriosam totam labore
+        facilis officia ipsa non, provident veniam quidem et, cumque vero cum
+        corrupti maiores praesentium maxime velit perferendis repellendus!
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur
+        quae doloribus similique, expedita accusamus maxime perferendis, fugiat
+        error magni, tempora temporibus ducimus necessitatibus exercitationem!
+        Consectetur dolore minima accusantium harum laboriosam totam labore
+        facilis officia ipsa non, provident veniam quidem et, cumque vero cum
+        corrupti maiores praesentium maxime velit perferendis repellendus!
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur
+        quae doloribus similique, expedita accusamus maxime perferendis, fugiat
+        error magni, tempora temporibus ducimus necessitatibus exercitationem!
+        Consectetur dolore minima accusantium harum laboriosam totam labore
+        facilis officia ipsa non, provident veniam quidem et, cumque vero cum
+        corrupti maiores praesentium maxime velit perferendis repellendus!
       </p>
     </div>
   );
