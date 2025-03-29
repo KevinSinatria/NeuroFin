@@ -31,3 +31,9 @@ body {
 .shake-horizontal {
   animation: shake-horizontal 4s ease 0s infinite normal none;
 }
+
+/* Sidebar Close */
+.close {
+  width: 78px;
+}
+
