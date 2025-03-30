@@ -13,9 +13,9 @@ const FirstSection = () => {
           transition={{ duration: 0.8 }}
           className="flex flex-col"
         >
-          <h2 className="font-semibold text-[28px] md:text-[32px] lg:text-[40px]">
+          <h1 className="font-semibold text-[28px] md:text-[32px] lg:text-[40px]">
             Dari Impulsif ke Inisiatif:
-          </h2>
+          </h1>
           <h2 className="font-semibold text-[28px] md:text-[32px] lg:text-[40px]">
             <span className="text-[#38C3F5]">Kendalikan</span> Pengeluaran Anda
           </h2>
@@ -25,7 +25,7 @@ const FirstSection = () => {
             animate={{ x: "0%", opacity: 1 }}
             initial={{ x: "40%", opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-[#4F5665] font-thin text-base md:text-xl mb-8"
+            className="text-[#4F5665] font-light text-base md:text-lg mb-8"
           >
             Ubah kebiasaan belanja impulsif menjadi tindakan finansial yang
             lebih bijak. Dengan pendekatan yang tepat.
@@ -36,7 +36,7 @@ const FirstSection = () => {
             transition={{ duration: 0.8, delay: 0.9 }}
             className="bg-[#38C3F5] text-white text-base md:text-lg font-semibold px-12 py-2 rounded-full hover:bg-white hover:border-2 hover:border-[#38C3F5] hover:text-[#38C3F5] transition-all"
           >
-            Mulai Sekarang
+            <a href="/register">Mulai Sekarang</a>
           </motion.button>
         </div>
       </div>

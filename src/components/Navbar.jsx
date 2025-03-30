@@ -34,7 +34,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="sticky top-0 z-[1000] bg-white border-b-[1px] border-b-slate-600">
+    <header className="sticky top-0 z-[1000] bg-white border-b-[1px] border-b-slate-600">
       <nav className="flex justify-between items-center px-6 py-4 lg:px-16">
         <div>
           <motion.a drag whileDrag="dragging" href="/#">
@@ -120,7 +120,7 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-    </div>
+    </header>
   );
 };
 

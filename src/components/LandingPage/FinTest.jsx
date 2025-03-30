@@ -50,7 +50,7 @@ const FinTest = () => {
         <motion.img
           initial={{ opacity: 0, y: "60%", clipPath: "inset(0% 0% 100% 0%)" }}
           whileInView={{ opacity: 1, y: "0%", clipPath: "inset(0% 0% 0% 0%)" }}
-          transition={{ duration: 0.5, delay: 0.8 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
           viewport={{ once: true }}
           src={FinTestImg}
           alt="Image"
