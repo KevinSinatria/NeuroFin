@@ -28,8 +28,8 @@ const Register = () => {
   return (
     <div>
       <Navbar />
-      <div className="flex justify-center items-center my-32 md:my-0 px-6 sm:px-10 md:px-20 py-10 sm:py-11 md:py-8">
-        <div className="w-full sm:w-[90%] md:w-xl flex flex-col justify-center items-center px-6 sm:px-10 md:px-16 py-6 sm:py-8 gap-3 border rounded-xl shadow-2xl shadow-indigo-950">
+      <div className="flex justify-center items-center my-16 md:my-0 px-6 sm:px-10 md:px-20 md:py-2">
+        <div className="w-full sm:w-[90%] md:w-xl flex flex-col justify-center items-center px-6 sm:px-10 md:px-16 py-6 sm:py-8 gap-3">
           <div className="flex flex-col items-center">
             <h1 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-5">
               Daftar
@@ -113,10 +113,33 @@ const Register = () => {
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 className="focus-visible:outline"
               >
-                {showConfirmPassword ? <EyeSlash size={25} /> : <Eye size={25} />}
+                {showConfirmPassword ? (
+                  <EyeSlash size={25} />
+                ) : (
+                  <Eye size={25} />
+                )}
               </button>
             </div>
+
             {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+
+            <div className="flex items-center gap-4 my-4 sm:gap-6">
+              <input
+                type="checkbox"
+                id="terms"
+                className="w-4 h-4 mt-1 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+              />
+              <label for="terms" class="text-sm text-gray-700">
+                Dengan mendaftar, saya menyatakan telah membaca dan menyetujui{" "}
+                {""}
+                <a
+                  href="/termsandconditions"
+                  class="text-blue-600 hover:underline"
+                >
+                  Syarat & Ketentuan dari NeuroFin.
+                </a>
+              </label>
+            </div>
             <button
               disabled={error !== ""}
               className="rounded-lg py-2 sm:py-3 mb-4 sm:mb-6 bg-sky-500 font-semibold hover:bg-sky-600 transition-all duration-300 text-white"
@@ -127,9 +150,9 @@ const Register = () => {
               Sudah punya akun?{" "}
               <a
                 href="/login"
-                className="font-semibold hover:text-blue-800 transition-all duration-300"
+                className="font-semibold text-blue-700 md:hover:text-blue-800 transition-all duration-300"
               >
-                Masuk
+                Masuk sekarang
               </a>
             </p>
           </form>

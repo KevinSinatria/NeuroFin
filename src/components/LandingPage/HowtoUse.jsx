@@ -63,7 +63,7 @@ const HowtoUse = () => {
           <ul>
             <NavLink
               text="Syarat & Ketentuan →"
-              to="#"
+              to="/termsandconditions"
               className="hover:underline text-[#0061E0]"
             />
           </ul>

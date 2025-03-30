@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import NeoLogo from "../../assets/icon/NeoLogoHD.png";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "motion/react";
 import {
   Cardholder,
   CaretCircleRight,
@@ -9,12 +10,14 @@ import {
   SignOut,
   User,
 } from "@phosphor-icons/react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 const Sidebar = ({ isOpen, toggleSideBar }) => {
   const [hoverIndex, setHoverIndex] = useState(null);
   const [isHover, setIsHover] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const menuItems = [
     { id: 1, label: "Beranda", icon: House, path: "/dashboard/home" },
@@ -39,18 +42,32 @@ const Sidebar = ({ isOpen, toggleSideBar }) => {
     { id: 5, label: "Akun Saya", icon: User, path: "/dashboard/myaccount" },
   ];
 
+  const handleNavigation = (path) => {
+    if (!isOpen) {
+      toggleSideBar();
+      setIsAnimating(true);
+      setTimeout(() => {
+        navigate(path);
+        setIsAnimating(false);
+      }, 300);
+    } else {
+      navigate(path);
+    }
+  };
+
   return (
     <div
-      className={`fixed top-0 flex flex-col left-0 h-screen z-1000 bg-slate-50 border-r transition-all duration-300 ${
+      className={`fixed top-[72px ] flex flex-col left-0 h-screen z-1000 bg-slate-50 border-r transition-all duration-300 ${
         isOpen ? "w-[260px]" : "w-[80px]"
       }`}
     >
       <button
-        className={`absolute bg-black rounded-full group left-[240px] top-[16px] transition-all ${
+        className={`absolute bg-black rounded-full -translate-y-3 group left-[240px] top-[16px] transition-all ${
           isOpen ? "translate-0" : "-translate-x-45 rotate-0"
         }`}
         tabIndex="0"
         onClick={toggleSideBar}
+        aria-label="Toggle show sidebar"
       >
         <CaretCircleRight
           weight="fill"
@@ -61,35 +78,27 @@ const Sidebar = ({ isOpen, toggleSideBar }) => {
           }`}
         />
       </button>
-      <header className="flex flex-col flex-1 justify-center items-start py-4 pl-4">
-        <a
-          href="/dashboard/home"
-          className={`transition-all ${
-            !isOpen ? "-translate-x-43 scale-110" : "translate-0"
-          }`}
-        >
-          <img src={NeoLogo} alt="Logo" className="lg:max-w-50" />
-        </a>
-      </header>
-      <main className="flex flex-[12] md:flex-[8] flex-col gap-4 items-start px-1 mt-8">
+      <main className="flex  flex-[3] md:flex-[5] flex-col gap-4 items-start px-1 mt-8">
         {menuItems.map((item, index) => {
           const isActive = location.pathname === item.path;
           const isHovered = hoverIndex === index;
 
           return (
-            <NavLink
+            <motion.button
               key={item.id}
-              to={item.path}
-              className={`w-full flex items-center gap-4 px-6 py-1 cursor-pointer rounded-md transition-all ${
-                isActive
-                  ? isOpen
-                    ? "border-l-6 border-l-blue-500"
-                    : ""
-                  : "text-slate-500"
-              }`}
+              className="relative w-full flex items-center gap-4 px-6 py-1 cursor-pointer rounded-md transition-all"
+              onClick={() => handleNavigation(item.path)}
+              disabled={isAnimating}
               onMouseEnter={() => setHoverIndex(index)}
               onMouseLeave={() => setHoverIndex(null)}
             >
+              {isActive && (
+                <motion.div
+                  layoutId="active-border"
+                  className="absolute -left-1 h-full w-[6px] rounded-tr-xl rounded-br-xl bg-blue-500"
+                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                />
+              )}
               <item.icon
                 size={30}
                 weight="fill"
@@ -116,7 +125,7 @@ const Sidebar = ({ isOpen, toggleSideBar }) => {
               >
                 {item.label}
               </span>
-            </NavLink>
+            </motion.button>
           );
         })}
       </main>

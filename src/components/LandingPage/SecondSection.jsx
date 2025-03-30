@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 
 const SecondSection = () => {
   return (
-    <div className="flex flex-col px-16 md:px-48 gap-4 items-center my-20">
+    <section className="flex flex-col px-16 md:px-48 gap-4 items-center my-20">
       <motion.h1
         initial={{ opacity: 0, x: "-100%" }}
         whileInView={{ opacity: 1, x: "0%" }}
@@ -30,7 +30,7 @@ const SecondSection = () => {
         Indonesia memiliki ekonomi yang belum kuat dengan uang yang pas-pasan,
         namun gaya hidup mereka sangat tinggi.
       </motion.p>
-    </div>
+    </section>
   );
 };
 

@@ -9,8 +9,8 @@ const Login = () => {
   return (
     <div>
       <Navbar />
-      <div className="flex justify-center items-center my-32 md:my-0 px-6 sm:px-10 md:px-20 py-10 sm:py-14 md:py-20">
-        <div className="w-full sm:w-[90%] md:w-xl flex flex-col justify-center items-center px-2 sm:px-10 md:px-16 py-6 sm:py-8 gap-3 border rounded-xl shadow-2xl shadow-indigo-950">
+      <div className="flex justify-center items-center my-32 md:my-0 px-6 sm:px-10 md:px-20 lg:py-3">
+        <div className="w-full sm:w-[90%] md:w-xl flex flex-col justify-center items-center px-2 sm:px-10 md:px-16 py-6 sm:py-8 gap-3">
           <div className="flex flex-col items-center">
             <h1 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-5">
               Masuk
@@ -51,7 +51,7 @@ const Login = () => {
             </div>
             <a
               href="#"
-              className="text-end text-xs sm:text-sm mb-3 sm:mb-4 hover:underline hover:text-blue-800 transition-all duration-300"
+              className="text-end text-xs sm:text-sm mb-3 sm:mb-4 hover:underline font-semibold text-blue-700 md:hover:text-blue-800 transition-all duration-300"
             >
               Lupa Password?
             </a>
@@ -59,12 +59,12 @@ const Login = () => {
               Masuk
             </button>
             <p className="text-center text-xs sm:text-sm">
-              Belum punya akun?{" "}
+              Belum punya akun? Ayo{" "}
               <a
                 href="/register"
-                className="font-semibold hover:text-blue-800 transition-all duration-300"
+                className="font-semibold text-blue-700 md:hover:text-blue-800 transition-all duration-300"
               >
-                Buat akun
+               daftar
               </a>
             </p>
           </form>

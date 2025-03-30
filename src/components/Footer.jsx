@@ -80,7 +80,12 @@ const Footer = () => {
             <ul className="flex flex-col gap-4 list-none">
               <li className="flex gap-2 text-white hover:underline">
                 <Envelope size={24} />
-                <a href="#">neurofin@gmail.com</a>
+                <a
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=neurofin14@gmail.com&su=Bantuan%20NeuroFin&body=Halo%20tim%20NeuroFin,"
+                  target="_blank"
+                >
+                  neurofin14@gmail.com
+                </a>
               </li>
               <li className="flex gap-2 text-white hover:underline">
                 <DeviceMobile size={24} />
@@ -101,9 +106,14 @@ const Footer = () => {
           </div>
         </div>
         <hr className="text-white" />
-        <div>
+        <div className="flex justify-between">
           <p className="text-white">
-            © Copyright NeuroFin 2025 All Right Reserved.
+            © Hak Cipta NeuroFin 2025. Seluruh Hak Dilindungi.
+          </p>
+          <p className="text-white">
+            <a href="/termsandconditions" className="hover:underline">
+              Syarat & Ketentuan
+            </a>
           </p>
         </div>
       </div>
