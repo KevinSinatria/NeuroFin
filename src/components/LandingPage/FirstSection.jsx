@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 
 const FirstSection = () => {
   return (
-    <section className="flex flex-col-reverse md:flex-row gap-2">
+    <section className="flex flex-col-reverse md:flex-row py-8 mb-8 md:mb-0 gap-2">
       <div className="flex flex-col flex-1 pb-10 pt-8 px-12 md:py-12 lg:py-16 md:px-16 lg:px-26 gap-3">
         <motion.div
           animate={{ x: "0%", opacity: 1 }}
@@ -25,7 +25,7 @@ const FirstSection = () => {
             animate={{ x: "0%", opacity: 1 }}
             initial={{ x: "40%", opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-[#4F5665] font-light text-base md:text-lg mb-8"
+            className="text-[#4F5665] font-light text-sm md:text-base mb-8"
           >
             Ubah kebiasaan belanja impulsif menjadi tindakan finansial yang
             lebih bijak. Dengan pendekatan yang tepat.
@@ -34,7 +34,7 @@ const FirstSection = () => {
             animate={{ y: "0%", opacity: 1 }}
             initial={{ y: "100%", opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.9 }}
-            className="bg-[#38C3F5] text-white text-base md:text-lg font-semibold px-12 py-2 rounded-full hover:bg-white hover:border-2 hover:border-[#38C3F5] hover:text-[#38C3F5] transition-all"
+            className="bg-[#38C3F5] text-white text-sm md:text-base font-semibold px-12 py-2 rounded-full hover:bg-white hover:border-2 hover:border-[#38C3F5] hover:text-[#38C3F5] transition-all"
           >
             <a href="/register">Mulai Sekarang</a>
           </motion.button>

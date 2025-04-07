@@ -59,7 +59,7 @@ const Navbar = () => {
         <div
           className={`absolute top-[60px] left-0 w-full bg-white lg:static lg:flex lg:gap-18 lg:w-auto transition-all duration-300 ease-in-out transform ${
             isOpen
-              ? "block opacity-100 scale-100 pb-4 border-b-[1px] lg:border-0 border-b-slate-600 pointer-events-auto"
+              ? "block opacity-100 scale-100 shadow-xl pb-4 border-b-[1px] lg:border-0 border-b-slate-600 pointer-events-auto"
               : "opacity-0 scale-95 lg:opacity-100 pointer-events-none lg:pointer-events-auto"
           }`}
         >

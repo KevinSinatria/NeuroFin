@@ -2,9 +2,19 @@ import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Envelope, Eye, EyeSlash, LockKey, User } from "@phosphor-icons/react";
+import { useAuth } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+
+  const { setIsAuthenticated } = useAuth();
+
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+    navigate("/dashboard");
+  };
 
   return (
     <div>
@@ -55,7 +65,13 @@ const Login = () => {
             >
               Lupa Password?
             </a>
-            <button className="rounded-lg py-2 sm:py-3 mb-4 sm:mb-6 bg-sky-500 font-semibold hover:bg-sky-600 transition-all duration-300 text-white">
+            <button
+              className="rounded-lg py-2 sm:py-3 mb-4 sm:mb-6 bg-sky-500 font-semibold hover:bg-sky-600 transition-all duration-300 text-white"
+              onClick={(e) => {
+                e.preventDefault();
+                handleLogin();
+              }}
+            >
               Masuk
             </button>
             <p className="text-center text-xs sm:text-sm">
@@ -64,7 +80,7 @@ const Login = () => {
                 href="/register"
                 className="font-semibold text-blue-700 md:hover:text-blue-800 transition-all duration-300"
               >
-               daftar
+                daftar
               </a>
             </p>
           </form>
