@@ -1,13 +1,8 @@
 import React from "react";
-import Layout from "./Layout";
-import Content from "../../../components/Dashboard/SpendingDairy/Content";
+import SpendingTable from "../../../components/Dashboard/SpendingDairy/SpendingTable.jsx.jsx";
 
-const SpendingDiary = () => {
-  return (
-    <Layout>
-      <Content />
-    </Layout>
-  );
+const SpendingDiaryPage = () => {
+  return <SpendingTable />;
 };
 
-export default SpendingDiary;
+export default SpendingDiaryPage;
