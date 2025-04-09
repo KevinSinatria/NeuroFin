@@ -39,7 +39,7 @@ const FilterControls = ({
       <select
         value={category}
         onChange={(e) => setCategory(e.target.value)}
-        className="w-full bg-gray-100 border border-gray-300 text-sm rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:shadow-lg transition-all"
+        className="border px-2 py-3 rounded"
       >
         {categories.map((category, index) => (
           <option
@@ -55,12 +55,12 @@ const FilterControls = ({
         placeholder="Tahun (contoh: 2025)"
         value={year}
         onChange={(e) => setYear(e.target.value)}
-        className="w-full bg-gray-100 border border-gray-300 text-sm rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:shadow-lg transition-all"
+        className="border w-50 px-2 py-1 rounded"
       />
       <select
         value={month}
         onChange={(e) => setMonth(e.target.value)}
-        className="w-full bg-gray-100 border border-gray-300 text-sm rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:shadow-lg transition-all"
+        className="border px-2 py-1 rounded"
       >
         <option value="" disabled>
           Pilih Bulan
@@ -76,14 +76,14 @@ const FilterControls = ({
         placeholder="Min. Pengeluaran"
         value={formatNumber(minAmount)}
         onChange={(e) => setMinAmount(e.target.value.replace(/\D/g, ""))}
-        className="w-full bg-gray-100 border border-gray-300 text-sm rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:shadow-lg transition-all"
+        className="border px-2 py-1 rounded"
       />
       <input
         type="text"
         placeholder="Max. Pengeluaran"
         value={formatNumber(maxAmount)}
         onChange={(e) => setMaxAmount(e.target.value.replace(/\D/g, ""))}
-        className="w-full bg-gray-100 border border-gray-300 text-sm rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:shadow-lg transition-all"
+        className="border px-2 py-1 rounded"
       />
     </div>
   );

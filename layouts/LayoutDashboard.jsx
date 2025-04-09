@@ -29,23 +29,21 @@ const LayoutDashboard = () => {
   ];
   return (
     <div className="flex max-h-full min-h-screen bg-slate-100">
-      <aside>
-        <Sidebar>
-          {menuItems.map((item) => {
-            const isActive = location.pathname === item.path;
+      <Sidebar>
+        {menuItems.map((item) => {
+          const isActive = location.pathname === item.path;
 
-            return (
-              <SidebarItem
-                key={item.id}
-                text={item.label}
-                icon={item.icon}
-                link={item.path}
-                active={isActive}
-              />
-            );
-          })}
-        </Sidebar>
-      </aside>
+          return (
+            <SidebarItem
+              key={item.id}
+              text={item.label}
+              icon={item.icon}
+              link={item.path}
+              active={isActive}
+            />
+          );
+        })}
+      </Sidebar>
       <div
         className={`flex flex-col flex-1 ml-[72px] md:ml-0 min-w-0 transition-all duration-300`}
       >

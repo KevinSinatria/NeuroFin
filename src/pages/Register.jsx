@@ -31,10 +31,10 @@ const Register = () => {
       <div className="flex justify-center items-center my-16 md:my-0 px-6 sm:px-10 md:px-20 md:py-2">
         <div className="w-full sm:w-[90%] md:w-xl flex flex-col justify-center items-center px-6 sm:px-10 md:px-16 py-6 sm:py-8 gap-3">
           <div className="flex flex-col items-center">
-            <h1 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-5">
+            <h1 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-5">
               Daftar
             </h1>
-            <h1 className="text-sm sm:text-xl font-medium mb-4 sm:mb-5">
+            <h1 className="text-base sm:text-lg font-medium mb-4 sm:mb-5">
               Selamat datang di{" "}
               <span className="font-bold">
                 Neuro<span className="text-sky-400">Fin</span>
@@ -128,8 +128,9 @@ const Register = () => {
                 type="checkbox"
                 id="terms"
                 className="w-4 h-4 mt-1 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                required
               />
-              <label for="terms" class="text-sm text-gray-700">
+              <label for="terms" class="text-[10px] sm:text-xs text-gray-700">
                 Dengan mendaftar, saya menyatakan telah membaca dan menyetujui{" "}
                 {""}
                 <a

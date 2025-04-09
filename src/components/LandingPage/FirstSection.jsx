@@ -13,7 +13,7 @@ const FirstSection = () => {
           transition={{ duration: 0.8 }}
           className="flex flex-col"
         >
-          <h1 className="font-semibold text-[28px] md:text-[32px] lg:text-[40px]">
+          <h1 className="font-semibold text-[28px] md:text-[32px] lg:text-[32px]">
             Dari Impulsif ke Inisiatif:
           </h1>
           <h2 className="font-semibold text-[28px] md:text-[32px] lg:text-[40px]">

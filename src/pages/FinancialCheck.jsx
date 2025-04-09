@@ -164,14 +164,14 @@ export default function FinancialCheck() {
       <div className="max-w-4xl mx-auto p-6 space-y-6 mb-12 mt-6">
         {!showResult1 ? (
           <div className="border p-6 rounded-lg shadow-md bg-white">
-            <h2 className="text-xl lg:text-2xl font-bold mb-8 text-gray-800">
+            <h2 className="text-base lg:text-xl font-bold mb-8 text-gray-800">
               {questions[currentQuestion].question}
             </h2>
             <div className="flex flex-col gap-4 mt-4">
               {questions[currentQuestion].options.map((option, index) => (
                 <button
                   key={index}
-                  className="bg-slate-600 hover:bg-emerald-400 text-white p-[8px] rounded transition-all"
+                  className="bg-slate-600 hover:bg-emerald-400 text-white text-xs md:text-sm p-[8px] rounded transition-all"
                   onClick={() => handleAnswer(index)}
                 >
                   {option}
@@ -271,7 +271,7 @@ export default function FinancialCheck() {
             </div>
             <NavLink to="/">
               <button className="fixed left-8 font-semibold bottom-6 px-2 py-2 lg:px-4 lg:py-2 bg-sky-500 rounded-2xl hover:bg-sky-700 hover:scale-102 active:scale-95 transition-all text-white">
-                <div className="flex gap-4 lg:text-lg justify-center items-center">
+                <div className="flex gap-4 text-sm lg:text-base justify-center items-center">
                   <div className="shake-horizontal">
                     <Rewind size={24} weight="fill" />
                   </div>

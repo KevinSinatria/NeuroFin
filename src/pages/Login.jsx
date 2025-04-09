@@ -22,10 +22,10 @@ const Login = () => {
       <div className="flex justify-center items-center my-32 md:my-0 px-6 sm:px-10 md:px-20 lg:py-3">
         <div className="w-full sm:w-[90%] md:w-xl flex flex-col justify-center items-center px-2 sm:px-10 md:px-16 py-6 sm:py-8 gap-3">
           <div className="flex flex-col items-center">
-            <h1 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-5">
+            <h1 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-5">
               Masuk
             </h1>
-            <h1 className="text-sm sm:text-xl font-medium mb-4 sm:mb-5">
+            <h1 className="text-base sm:text-lg font-medium mb-4 sm:mb-5">
               Selamat datang kembali di{" "}
               <span className="font-bold">
                 Neuro<span className="text-sky-400">Fin</span>
@@ -61,12 +61,12 @@ const Login = () => {
             </div>
             <a
               href="#"
-              className="text-end text-xs sm:text-sm mb-3 sm:mb-4 hover:underline font-semibold text-blue-700 md:hover:text-blue-800 transition-all duration-300"
+              className="text-end text-[10px] sm:text-xs mb-3 sm:mb-4 hover:underline font-semibold text-blue-700 md:hover:text-blue-800 transition-all duration-300"
             >
               Lupa Password?
             </a>
             <button
-              className="rounded-lg py-2 sm:py-3 mb-4 sm:mb-6 bg-sky-500 font-semibold hover:bg-sky-600 transition-all duration-300 text-white"
+              className="rounded-lg py-1 sm:py-2 mb-4 sm:mb-6 bg-sky-500 font-medium active:scale-97 hover:bg-sky-600 transition-all duration-300 text-white"
               onClick={(e) => {
                 e.preventDefault();
                 handleLogin();

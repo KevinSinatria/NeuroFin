@@ -12,9 +12,9 @@ import TermsAndConditions from "./pages/TermsAndConditions";
 
 // Dashboard Pages
 import Home from "./pages/auth/dashboard/Home";
-import Challenge from "./pages/auth/dashboard/Challenge";
 import SpendingDiary from "./pages/auth/dashboard/SpendingDiary";
 import MyAccount from "./pages/auth/dashboard/MyAccount";
+import Challenge from "./components/Dashboard/Challenge/ChallengeTable";
 
 function App() {
   return (

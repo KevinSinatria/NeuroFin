@@ -18,7 +18,7 @@ const Footer = () => {
     >
       <div className="flex flex-col gap-10 px-4 md:px-16 lg:px-24 py-12 lg:py-20">
         <div className="flex @max-xs:px-12 @max-xs:py-8 flex-col lg:flex-row gap-20 justify-between">
-          <div className="flex flex-col gap-4 flex-1">
+          <div className="flex flex-col gap-6 flex-1">
             <figure>
               <a href="#">
                 <img src={NeoLogoDark} alt="img" className="max-w-[240px]" />
@@ -63,7 +63,7 @@ const Footer = () => {
             </h2>
             <ul className="flex flex-col text-sm gap-4 list-none">
               <li className="text-white hover:underline">
-                <a href="/#">Home</a>
+                <a href="/#">Beranda</a>
               </li>
               <li className="text-white hover:underline">
                 <a href="#finTest">Cek Keuangan</a>

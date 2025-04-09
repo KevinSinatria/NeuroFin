@@ -7,12 +7,13 @@ export const showToast = ({
   title,
   icon = "success",
   position = "top-end",
+  timer = 4000,
 }) => {
   const Toast = ReactSwal.mixin({
     toast: true,
     position: position,
     showConfirmButton: false,
-    timer: 4000,
+    timer: timer,
     timerProgressBar: true,
     didOpen: (toast) => {
       toast.onmouseenter = Swal.stopTimer;

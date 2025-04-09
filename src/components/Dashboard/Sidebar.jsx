@@ -12,7 +12,7 @@ export const Sidebar = ({ children }) => {
         expanded ? "w-[260px] shadow-2xl md:shadow" : "w-[72px]"
       }`}
     >
-      <nav className="h-full flex flex-col bg-white border-r shadow-sm">
+      <nav className="h-full flex flex-col bg-white border-r border-r-gray-300 shadow-sm">
         <div
           className={`p-4 pb-2 flex justify-center ${
             expanded ? "gap-7" : ""
@@ -22,14 +22,18 @@ export const Sidebar = ({ children }) => {
             src={NeoLogo}
             alt="Logo"
             className={`overflow-hidden transition-all ${
-              expanded ? "w-42" : "w-0"
+              expanded ? "w-36" : "w-0"
             }`}
           />
           <button
-            className="p-1.5 rounded-lg text-lg bg-gray-100 hover:bg-gray-200"
+            className="p-1.5 rounded-lg text-lg bg-gray-200 hover:bg-gray-300"
             onClick={() => setExpanded((curr) => !curr)}
           >
-            {expanded ? <CaretLineLeft /> : <CaretLineRight />}
+            {expanded ? (
+              <CaretLineLeft weight="bold" />
+            ) : (
+              <CaretLineRight weight="bold" />
+            )}
           </button>
         </div>
 
@@ -37,18 +41,18 @@ export const Sidebar = ({ children }) => {
           <ul className="flex-1 px-3 mt-2">{children}</ul>
         </SidebarContext.Provider>
 
-        <div className="border-t">
+        <div className="border-t border-t-gray-600">
           <a
             className={`relative flex justify-center group transition-all items-center py-2 px-3 mx-1 my-1 font-medium rounded-md cursor-pointer hover:bg-red-100`}
           >
             <SignOut
-              size={30}
+              size={20}
               weight="fill"
               className="rotate-180 group-hover:text-red-400 transition-all min-w-[30px]"
             />
 
             <span
-              className={`font-medium whitespace-nowrap group-hover:text-red-400 overflow-hidden text-base transition-all ${
+              className={`font-medium whitespace-nowrap group-hover:text-red-400 overflow-hidden text-sm transition-all ${
                 expanded ? "w-52 ml-3" : "w-0 ml-0"
               }`}
             >
@@ -81,9 +85,9 @@ export const SidebarItem = ({ icon: Icon, text, active, link }) => {
             : "hover:bg-indigo-50 text-gray-600"
         }`}
       >
-        <Icon size={24} className="min-w-[24px]" />
+        <Icon size={20} className="min-w-[20px]" />
         <span
-          className={`overflow-hidden whitespace-nowrap transition-all ${
+          className={`overflow-hidden whitespace-nowrap text-sm transition-all ${
             expanded ? "w-52 ml-3" : "w-0 ml-0"
           }`}
         >

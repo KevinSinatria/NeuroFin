@@ -5,25 +5,22 @@ import {
   getSpendingData,
   updateSpendingData,
 } from "../../../api/expenseApi";
-import FilterControls from "./FilterControls";
+import { showToast } from "../../alerts/alerts";
 import {
-  CheckFat,
   Funnel,
-  FunnelX,
   PencilSimple,
   PlusCircle,
-  Robot,
   TrashSimple,
   WarningCircle,
   X,
 } from "@phosphor-icons/react";
-import Modal from "../../modal/Modal";
-import { NumericFormat } from "react-number-format";
 // eslint-disable-next-line no-unused-vars
 import { AnimatePresence, motion } from "motion/react";
-import { showToast } from "../../alerts/alerts";
+import Modal from "../../modal/Modal";
+import { NumericFormat } from "react-number-format";
+import FilterControls from "./FilterControls";
 
-const SpendingTable = () => {
+const ChallengeTable = () => {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [filterTrigger, setFilterTrigger] = useState(0);
@@ -108,33 +105,6 @@ const SpendingTable = () => {
     setFilteredData(filtered);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterTrigger]);
-
-  const resetFilterHandler = () => {
-    try {
-      setSelectedCategory("");
-      setYear("");
-      setMonth("");
-      setMinAmount("");
-      setMaxAmount("");
-    } catch (err) {
-      console.error("Error: ", err.massage);
-    }
-  };
-
-  const applyFilterHandler = () => {
-    setShowFilter(false);
-    setFilterTrigger((prev) => prev + 1);
-    setCurrentPage(1);
-    try {
-      showToast({ title: "Berhasil menerapkan filter!", timer: 2500 });
-    } catch (err) {
-      showToast({
-        title: `Gagal menerapkan filter: ${err.message}`,
-        icon: "error",
-        timer: 2500,
-      });
-    }
-  };
 
   const categories = [
     "Makanan",
@@ -227,10 +197,10 @@ const SpendingTable = () => {
   return (
     <div className="flex flex-col justify-center items-center w-auto overflow-y-auto">
       <div className="flex justify-between items-center w-full">
-        <div className="flex gap-2 md:gap-4">
+        <div className="flex gap-4">
           <button
             onClick={openCreateModalHandler}
-            className="flex items-center md:text-sm text-xs whitespace-nowrap gap-2 md:gap-3 px-2 md:px-6 py-1.5 mb-2 rounded-xl text-gray-100 font-medium bg-green-500 hover:bg-green-600 active:scale-97 transition-all hover:shadow cursor-pointer"
+            className="flex items-center md:text-base text-sm gap-2 md:gap-3 px-2 md:px-8 py-1.5 mb-2 rounded-xl text-gray-100 font-medium bg-green-500 hover:bg-green-600 transition-all hover:shadow cursor-pointer"
           >
             <span className="md:text-base text-sm">
               <PlusCircle size={24} weight="duotone" />
@@ -239,7 +209,7 @@ const SpendingTable = () => {
           </button>
           <button
             onClick={() => setShowFilter(true)}
-            className="flex items-center md:text-sm text-xs gap-2 md:gap-3 px-2 md:px-8 py-1.5 mb-2 rounded-xl text-gray-900 font-medium bg-gray-200 hover:bg-gray-300 active:scale-97 transition-all hover:shadow cursor-pointer"
+            className="flex items-center md:text-base text-sm gap-2 md:gap-3 px-2 md:px-8 py-1.5 mb-2 rounded-xl text-gray-900 font-medium bg-gray-200 hover:bg-gray-300 transition-all hover:shadow cursor-pointer"
           >
             <span>
               <Funnel size={24} weight="duotone" />
@@ -247,7 +217,7 @@ const SpendingTable = () => {
             Filter
           </button>
         </div>
-        <p className="text-[10px] md:text-xs text-gray-700">
+        <p className="text-xs md:text-sm text-gray-700">
           Halaman {currentPage} dari {totalPage} halaman
         </p>
       </div>
@@ -259,10 +229,9 @@ const SpendingTable = () => {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed top-0 md:top-13 right-0 h-full w-96 bg-white shadow-2xl z-5000 md:z-50 p-6 overflow-y-auto"
+            className="fixed top-13 right-0 h-full w-96 bg-white shadow-2xl z-50 p-6 overflow-y-auto"
           >
-            <div className="flex justify-between items-center mb-8">
-              <Funnel size={24} weight="duotone" />
+            <div className="flex justify-between items-center mb-4">
               <h2 className="text-lg font-semibold">Filter Pengeluaran</h2>
               <button
                 className="hover:bg-gray-300 rounded transition-all"
@@ -287,17 +256,13 @@ const SpendingTable = () => {
             />
 
             <button
-              className="w-full mt-8 font-medium text-sm flex gap-2 items-center justify-center bg-gray-400 text-gray-50 py-2 rounded-lg hover:bg-gray-500 active:scale-97 transition-all"
-              onClick={resetFilterHandler}
+              className="w-full mt-4 bg-sky-400 text-white py-[5px] rounded-lg hover:bg-sky-500 transition-all"
+              onClick={() => {
+                setShowFilter(false);
+                setFilterTrigger((prev) => prev + 1);
+              }}
             >
-              <FunnelX weight="bold" size={24} />
-              <span>Reset Filter</span>
-            </button>
-            <button
-              className="w-full mt-4 font-medium flex gap-2 items-center justify-center text-sm bg-blue-400 text-white py-2 rounded-lg hover:bg-blue-500 active:scale-97 transition-all"
-              onClick={applyFilterHandler}
-            >
-              <CheckFat size={24} /> <span>Terapkan Filter</span>
+              Terapkan Filter
             </button>
           </motion.div>
         )}
@@ -305,29 +270,23 @@ const SpendingTable = () => {
 
       {/* Tabel Pengeluaran */}
       <div className="max-h-[760px] md:max-h-[440px] 2xl:max-h-[600px] w-full overflow-y-auto bg-white rounded-2xl shadow-xl ring-1 ring-gray-200">
-        <table className="w-full text-xs border-separate border-spacing-0">
+        <table className="w-full text-sm border-separate border-spacing-0">
           <thead className="sticky top-0 z-10 bg-gradient-to-r from-blue-100 via-blue-50 to-blue-100 shadow">
             <tr className="text-gray-700 font-semibold uppercase tracking-wide">
               <th className="py-4 px-3 text-center border-b border-gray-300">
                 No.
               </th>
               <th className="py-4 px-3 text-center border-b border-gray-300">
-                Kategori
+                Tujuan
               </th>
               <th className="py-4 px-3 text-right border-b border-gray-300">
-                Uang Masuk
+                Tantangan
               </th>
               <th className="py-4 px-3 text-right border-b border-gray-300">
-                Uang Keluar
+                Mulai {"(Tantangan)"}
               </th>
               <th className="py-4 px-3 text-right border-b border-gray-300">
-                Saldo Akhir
-              </th>
-              <th className="py-4 px-3 text-left border-b border-gray-300">
-                Deskripsi
-              </th>
-              <th className="py-4 px-3 text-center border-b border-gray-300">
-                Tanggal
+                Berakhir {"(Tantangan)"}
               </th>
               <th className="py-4 px-3 text-center border-b border-gray-300">
                 Aksi
@@ -335,108 +294,57 @@ const SpendingTable = () => {
             </tr>
           </thead>
           <tbody className="bg-white">
-            {currentItems.length !== 0 ? (
-              currentItems.map((item, index) => (
-                <tr
-                  key={item.expenseid}
-                  className="hover:bg-blue-50 transition duration-150 group"
-                >
-                  <td className="p-4 text-center border-b border-gray-200">
-                    {(currentPage - 1) * itemsPerPage + index + 1}
-                  </td>
-                  <td className="p-4 text-center border-b border-gray-200">
-                    <span className="bg-emerald-100 text-emerald-700 text-xs font-semibold py-1 px-3 rounded-full group-hover:bg-emerald-200">
-                      {item.category}
-                    </span>
-                  </td>
-                  <td className="p-4 text-right text-gray-700 border-b border-gray-200">
-                    {new Intl.NumberFormat("id-ID", {
-                      style: "currency",
-                      currency: "IDR",
-                      minimumFractionDigits: 0,
-                    }).format(item.uangmasuk)}
-                  </td>
-                  <td className="p-4 text-right text-gray-700 border-b border-gray-200">
-                    {new Intl.NumberFormat("id-ID", {
-                      style: "currency",
-                      currency: "IDR",
-                      minimumFractionDigits: 0,
-                    }).format(item.uangkeluar)}
-                  </td>
-                  <td className="p-4 text-right text-green-600 font-semibold border-b border-gray-200">
-                    {new Intl.NumberFormat("id-ID", {
-                      style: "currency",
-                      currency: "IDR",
-                      minimumFractionDigits: 0,
-                    }).format(item.uangakhir)}
-                  </td>
-                  <td className="p-4 text-gray-600 border-b border-gray-200">
-                    {item.description}
-                  </td>
-                  <td className="p-4 text-center text-gray-500 whitespace-nowrap border-b border-gray-200">
-                    {new Date(item.transaction_date).toLocaleDateString(
-                      "id-ID",
-                      {
-                        weekday: "short",
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric",
-                      }
-                    )}
-                  </td>
-                  <td className="p-4 flex justify-center gap-2 items-center border-b border-gray-200">
-                    <button
-                      className="p-2 rounded-full hover:bg-orange-100 transition"
-                      onClick={() => openEditModalHandler(item)}
-                      title="Edit"
-                    >
-                      <PencilSimple
-                        size={20}
-                        weight="duotone"
-                        color="#F97316"
-                      />
-                    </button>
-                    <button
-                      className="p-2 rounded-full hover:bg-red-100 transition"
-                      onClick={() => openDeleteModalHandler(item.expenseid)}
-                      title="Hapus"
-                    >
-                      <TrashSimple size={20} weight="duotone" color="#EF4444" />
-                    </button>
-                  </td>
-                </tr>
-              ))
-            ) : data.length !== 0 ? (
-              <tr>
-                <td
-                  className="w-full text-center py-4 text-base font-medium text-gray-500"
-                  colSpan="9"
-                >
-                  <div className="flex flex-col items-center justify-center">
-                    <FunnelX size={48} weight="duotone" />
-                    <p>
-                      Hmm... datanya gak ketemu nih, kayaknya filter kamu
-                      terlalu ketat.
-                    </p>
-                  </div>
+            {currentItems.map((item, index) => (
+              <tr
+                key={item.expenseid}
+                className="hover:bg-blue-50 transition duration-150 group"
+              >
+                <td className="p-4 text-center border-b border-gray-200">
+                  {(currentPage - 1) * itemsPerPage + index + 1}
+                </td>
+                <td className="p-4 text-right text-gray-700 border-b border-gray-200">
+                  {new Intl.NumberFormat("id-ID", {
+                    style: "currency",
+                    currency: "IDR",
+                    minimumFractionDigits: 0,
+                  }).format(item.uangkeluar)}
+                </td>
+                <td className="p-4 text-right text-green-600 font-semibold border-b border-gray-200">
+                  {new Intl.NumberFormat("id-ID", {
+                    style: "currency",
+                    currency: "IDR",
+                    minimumFractionDigits: 0,
+                  }).format(item.uangakhir)}
+                </td>
+                <td className="p-4 text-gray-600 border-b border-gray-200">
+                  {item.description}
+                </td>
+                <td className="p-4 text-center text-gray-500 whitespace-nowrap border-b border-gray-200">
+                  {new Date(item.transaction_date).toLocaleDateString("id-ID", {
+                    weekday: "short",
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </td>
+                <td className="p-4 flex justify-center gap-2 items-center border-b border-gray-200">
+                  <button
+                    className="p-2 rounded-full hover:bg-orange-100 transition"
+                    onClick={() => openEditModalHandler(item)}
+                    title="Edit"
+                  >
+                    <PencilSimple size={20} weight="duotone" color="#F97316" />
+                  </button>
+                  <button
+                    className="p-2 rounded-full hover:bg-red-100 transition"
+                    onClick={() => openDeleteModalHandler(item.expenseid)}
+                    title="Hapus"
+                  >
+                    <TrashSimple size={20} weight="duotone" color="#EF4444" />
+                  </button>
                 </td>
               </tr>
-            ) : (
-              <tr>
-                <td
-                  className="w-full text-center py-4 text-base font-medium text-gray-500"
-                  colSpan="9"
-                >
-                  <div className="flex flex-col items-center justify-center">
-                    <Robot size={48} weight="duotone" />
-                    <p>
-                      Belum ada data yang tersedia. Kamu bisa mulai dengan
-                      membuat satu data.
-                    </p>
-                  </div>
-                </td>
-              </tr>
-            )}
+            ))}
           </tbody>
         </table>
       </div>
@@ -488,17 +396,12 @@ const SpendingTable = () => {
         width={700}
       >
         <h2 className="text-xl flex justify-center font-semibold">BUAT DATA</h2>
-        <form className="flex flex-col gap-2" onSubmit={createHandler}>
+        <form className="flex flex-col gap-1" onSubmit={createHandler}>
           <div className="flex flex-col gap-1 justify-center">
-            <label
-              htmlFor="category"
-              className="text-sm font-medium text-gray-800"
-            >
-              Kategori
-            </label>
+            <label htmlFor="category">Kategori</label>
             <select
               id="category"
-              className="w-full bg-gray-100 border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:shadow-lg focus:ring-blue-500 transition-all"
+              className="w-full rounded border py-2.5"
               value={createValue.category || ""}
               onChange={(e) =>
                 setCreateValue({ ...createValue, category: e.target.value })
@@ -517,12 +420,7 @@ const SpendingTable = () => {
           </div>
           <div className="flex w-full gap-4 items-center">
             <div className="flex flex-1 flex-col gap-1 justify-center">
-              <label
-                htmlFor="uangMasuk"
-                className="text-sm font-medium text-gray-800"
-              >
-                Uang Masuk
-              </label>
+              <label htmlFor="uangMasuk">Uang Masuk</label>
               <NumericFormat
                 id="uangMasuk"
                 value={createValue.uangmasuk || ""}
@@ -535,21 +433,14 @@ const SpendingTable = () => {
                 thousandSeparator="."
                 decimalSeparator=","
                 prefix="Rp "
-                className="w-full bg-gray-100 border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:shadow-lg focus:ring-blue-500 transition-all"
+                className="w-full rounded px-2 border py-2.5"
                 decimalScale={2}
                 fixedDecimalScale
-                autoComplete="off"
-                placeholder="Rp 0,00"
                 required
               />
             </div>
             <div className="flex flex-1 flex-col gap-1 justify-center">
-              <label
-                htmlFor="uangKeluar"
-                className="text-sm font-medium text-gray-800"
-              >
-                Uang Keluar
-              </label>
+              <label htmlFor="uangKeluar">Uang Keluar</label>
               <NumericFormat
                 id="uangKeluar"
                 value={createValue.uangkeluar || ""}
@@ -562,22 +453,15 @@ const SpendingTable = () => {
                 thousandSeparator="."
                 decimalSeparator=","
                 prefix="Rp "
-                className="w-full bg-gray-100 border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:shadow-lg focus:ring-blue-500 transition-all"
+                className="w-full rounded border px-2 py-2.5"
                 decimalScale={2}
                 fixedDecimalScale
-                autoComplete="off"
-                placeholder="Rp 0,00"
                 required
               />
             </div>
           </div>
           <div className="flex flex-col gap-1 justify-center">
-            <label
-              htmlFor="saldoAkhir"
-              className="text-sm font-medium text-gray-800"
-            >
-              Saldo Akhir
-            </label>
+            <label htmlFor="saldoAkhir">Saldo Akhir</label>
             <NumericFormat
               id="saldoAkhir"
               value={createValue.uangakhir || ""}
@@ -590,21 +474,14 @@ const SpendingTable = () => {
               thousandSeparator="."
               decimalSeparator=","
               prefix="Rp "
-              className="w-full bg-gray-100 border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:shadow-lg focus:ring-blue-500 transition-all"
+              className="w-full rounded border px-2 py-2.5"
               decimalScale={2}
               fixedDecimalScale
-              autoComplete="off"
-              placeholder="Rp 0,00"
               required
             />
           </div>
           <div className="flex flex-col gap-1 justify-center">
-            <label
-              htmlFor="deskripsi"
-              className="text-sm font-medium text-gray-800"
-            >
-              Deskripsi
-            </label>
+            <label htmlFor="deskripsi">Deskripsi</label>
             <input
               type="text"
               id="deskripsi"
@@ -612,20 +489,16 @@ const SpendingTable = () => {
               onChange={(e) =>
                 setCreateValue({ ...createValue, description: e.target.value })
               }
-              className="w-full bg-gray-100 border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:shadow-lg focus:ring-blue-500 transition-all"
-              autoComplete="off"
-              placeholder="Contoh: Memborong bitcoin"
+              className="w-full rounded border px-2 py-2.5"
               required
             />
           </div>
           <div className="flex flex-col gap-1 justify-center">
-            <label htmlFor="date" className="text-sm font-medium text-gray-800">
-              Tanggal
-            </label>
+            <label htmlFor="date">Tanggal</label>
             <input
               type="date"
               id="date"
-              className="w-full bg-gray-100 border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:shadow-lg focus:ring-blue-500 transition-all mb-3"
+              className="w-full rounded border mb-3 px-2 py-2.5"
               value={
                 createValue.transaction_date
                   ? new Date(createValue.transaction_date)
@@ -667,15 +540,10 @@ const SpendingTable = () => {
           onSubmit={(e) => updateHandler(editValue.expenseid, e)}
         >
           <div className="flex flex-col gap-1 justify-center">
-            <label
-              htmlFor="category"
-              className="text-sm font-medium text-gray-800"
-            >
-              Kategori
-            </label>
+            <label htmlFor="category">Kategori</label>
             <select
               id="category"
-              className="w-full bg-gray-100 border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:shadow-lg focus:ring-blue-500 transition-all"
+              className="w-full rounded border py-2.5"
               value={editValue.category}
               onChange={(e) =>
                 setEditValue({ ...editValue, category: e.target.value })
@@ -691,12 +559,7 @@ const SpendingTable = () => {
           </div>
           <div className="flex w-full gap-4 items-center">
             <div className="flex flex-1 flex-col gap-1 justify-center">
-              <label
-                htmlFor="uangMasuk"
-                className="text-sm font-medium text-gray-800"
-              >
-                Uang Masuk
-              </label>
+              <label htmlFor="uangMasuk">Uang Masuk</label>
               <NumericFormat
                 id="uangMasuk"
                 value={editValue.uangmasuk}
@@ -709,19 +572,14 @@ const SpendingTable = () => {
                 thousandSeparator="."
                 decimalSeparator=","
                 prefix="Rp "
-                className="w-full bg-gray-100 border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:shadow-lg focus:ring-blue-500 transition-all"
+                className="w-full rounded px-2 border py-2.5"
                 decimalScale={2}
                 fixedDecimalScale
                 required
               />
             </div>
             <div className="flex flex-1 flex-col gap-1 justify-center">
-              <label
-                htmlFor="uangKeluar"
-                className="text-sm font-medium text-gray-800"
-              >
-                Uang Keluar
-              </label>
+              <label htmlFor="uangKeluar">Uang Keluar</label>
               <NumericFormat
                 id="uangKeluar"
                 value={editValue.uangkeluar}
@@ -734,7 +592,7 @@ const SpendingTable = () => {
                 thousandSeparator="."
                 decimalSeparator=","
                 prefix="Rp "
-                className="w-full bg-gray-100 border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:shadow-lg focus:ring-blue-500 transition-all"
+                className="w-full rounded border px-2 py-2.5"
                 decimalScale={2}
                 fixedDecimalScale
                 required
@@ -742,12 +600,7 @@ const SpendingTable = () => {
             </div>
           </div>
           <div className="flex flex-col gap-1 justify-center">
-            <label
-              htmlFor="saldoAkhir"
-              className="text-sm font-medium text-gray-800"
-            >
-              Saldo Akhir
-            </label>
+            <label htmlFor="saldoAkhir">Saldo Akhir</label>
             <NumericFormat
               id="saldoAkhir"
               value={editValue.uangakhir}
@@ -760,19 +613,14 @@ const SpendingTable = () => {
               thousandSeparator="."
               decimalSeparator=","
               prefix="Rp "
-              className="w-full bg-gray-100 border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:shadow-lg focus:ring-blue-500 transition-all"
+              className="w-full rounded border px-2 py-2.5"
               decimalScale={2}
               fixedDecimalScale
               required
             />
           </div>
           <div className="flex flex-col gap-1 justify-center">
-            <label
-              htmlFor="deskripsi"
-              className="text-sm font-medium text-gray-800"
-            >
-              Deskripsi
-            </label>
+            <label htmlFor="deskripsi">Deskripsi</label>
             <input
               type="text"
               id="deskripsi"
@@ -780,18 +628,16 @@ const SpendingTable = () => {
               onChange={(e) =>
                 setEditValue({ ...editValue, description: e.target.value })
               }
-              className="w-full bg-gray-100 border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:shadow-lg focus:ring-blue-500 transition-all"
+              className="w-full rounded border px-2 py-2.5"
               required
             />
           </div>
           <div className="flex flex-col gap-1 justify-center">
-            <label htmlFor="date" className="text-sm font-medium text-gray-800">
-              Tanggal
-            </label>
+            <label htmlFor="date">Tanggal</label>
             <input
               type="date"
               id="date"
-              className="w-full bg-gray-100 border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:shadow-lg focus:ring-blue-500 transition-all mb-3"
+              className="w-full rounded border mb-3 px-2 py-2.5"
               value={
                 editValue.transaction_date
                   ? new Date(editValue.transaction_date)
@@ -865,4 +711,4 @@ const SpendingTable = () => {
   );
 };
 
-export default SpendingTable;
+export default ChallengeTable;
