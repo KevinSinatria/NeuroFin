@@ -12,10 +12,13 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-linear-to-t/srgb from-90% md:from-82% from-[#0D263B] to-100% to-white">
-      <div className="flex flex-col gap-10 px-20 md:px-28 lg:px-42 py-30 lg:py-40">
+    <footer
+      className="bg-[#0D263B] mt-10"
+      style={{ boxShadow: "-1px -3px 24px 0px rgba(66, 68, 90, 1)" }}
+    >
+      <div className="flex flex-col gap-10 px-4 md:px-16 lg:px-24 py-12 lg:py-20">
         <div className="flex @max-xs:px-12 @max-xs:py-8 flex-col lg:flex-row gap-20 justify-between">
-          <div className="flex flex-col gap-4 flex-1">
+          <div className="flex flex-col gap-6 flex-1">
             <figure>
               <a href="#">
                 <img src={NeoLogoDark} alt="img" className="max-w-[240px]" />
@@ -54,13 +57,13 @@ const Footer = () => {
               </a>
             </div>
           </div>
-          <div className="flex-1 px-10">
+          <div className="flex-1 px-8">
             <h2 className="text-xl text-white font-semibold mb-12">
               Navigasi Cepat
             </h2>
-            <ul className="flex flex-col gap-4 list-none">
+            <ul className="flex flex-col text-sm gap-4 list-none">
               <li className="text-white hover:underline">
-                <a href="/#">Home</a>
+                <a href="/#">Beranda</a>
               </li>
               <li className="text-white hover:underline">
                 <a href="#finTest">Cek Keuangan</a>
@@ -73,14 +76,19 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div className="flex-1 px-10">
+          <div className="flex-1 px-8">
             <h2 className="text-xl text-white font-semibold mb-12">
               Kontak Kami
             </h2>
-            <ul className="flex flex-col gap-4 list-none">
+            <ul className="flex flex-col text-sm gap-4 list-none">
               <li className="flex gap-2 text-white hover:underline">
                 <Envelope size={24} />
-                <a href="#">neurofin@gmail.com</a>
+                <a
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=neurofin14@gmail.com&su=Bantuan%20NeuroFin&body=Halo%20tim%20NeuroFin,"
+                  target="_blank"
+                >
+                  neurofin14@gmail.com
+                </a>
               </li>
               <li className="flex gap-2 text-white hover:underline">
                 <DeviceMobile size={24} />
@@ -101,9 +109,14 @@ const Footer = () => {
           </div>
         </div>
         <hr className="text-white" />
-        <div>
+        <div className="flex text-xs justify-between">
           <p className="text-white">
-            © Copyright NeuroFin 2025 All Right Reserved.
+            © Hak Cipta NeuroFin 2025. Seluruh Hak Dilindungi.
+          </p>
+          <p className="text-white">
+            <a href="/termsandconditions" className="hover:underline">
+              Syarat & Ketentuan
+            </a>
           </p>
         </div>
       </div>

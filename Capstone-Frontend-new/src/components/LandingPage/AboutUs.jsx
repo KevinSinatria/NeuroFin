@@ -17,16 +17,16 @@ const AboutUs = () => {
           whileInView={{ opacity: 1, y: "0%", clipPath: "inset(0% 0% 0% 0%)" }}
           transition={{ duration: 0.8, delay: 0.5 }}
           viewport={{ once: true }}
-          className="text-xl"
+          className="text-lg"
         >
-          About Us
+          Tentang Kami
         </motion.h2>
         <motion.h2
           initial={{ opacity: 0, y: "-100%", clipPath: "inset(100% 0% 0% 0%)" }}
           whileInView={{ opacity: 1, y: "0%", clipPath: "inset(0% 0% 0% 0%)" }}
           transition={{ duration: 0.8, delay: 0.8 }}
           viewport={{ once: true }}
-          className="font-semibold text-2xl md:text-3xl"
+          className="font-semibold text-xl md:text-2xl"
         >
           Tentang dan Fitur
         </motion.h2>
@@ -37,16 +37,16 @@ const AboutUs = () => {
           viewport={{ once: true }}
           className="mt-2"
         >
-          <div className="border-b-6 border-[#38C3F5] flex items-center w-28"></div>
+          <div className="border-b-4 border-[#38C3F5] flex items-center w-28"></div>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, x: "-100%" }}
           whileInView={{ opacity: 1, x: "0%" }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
-          className="px-16 md:px-24 lg:px-28 py-10 text-center"
+          className="px-16 md:px-24 lg:px-28 py-4 text-center"
         >
-          <p className="text-base md:text-lg">
+          <p className="text-sm md:text-base">
             <span className="text-[#38C3F5] font-bold">NeuroFin</span> adalah
             sebuah aplikasi web yang bertujuan untuk
             <span className="text-[#FFA400] font-semibold">
@@ -103,7 +103,7 @@ const AboutUs = () => {
             alt="image"
             className="max-w-[60px]"
           />
-          <h4 className="text-base md:text-lg text-[#FFA400]">Test Gratis</h4>
+          <h4 className="text-sm md:text-base text-[#FFA400]">Test Gratis</h4>
         </div>
         <div className="flex flex-col items-center justify-center justify-self-center text-center max-w-[50px]">
           <motion.img
@@ -123,7 +123,7 @@ const AboutUs = () => {
             alt="img"
             className="max-w-[60px]"
           />
-          <h4 className="text-base md:text-lg text-[#FFA400]">
+          <h4 className="text-sm md:text-base text-[#FFA400]">
             Tantangan Gamifikasi
           </h4>
         </div>
@@ -145,7 +145,7 @@ const AboutUs = () => {
             alt="img"
             className="max-w-[60px]"
           />
-          <h4 className="text-base md:text-lg text-[#FFA400]">OCR</h4>
+          <h4 className="text-sm md:text-base text-[#FFA400]">OCR</h4>
         </div>
         <div className="flex flex-col items-center justify-center justify-self-center text-center max-w-[50px]">
           <motion.img
@@ -165,7 +165,7 @@ const AboutUs = () => {
             alt="img"
             className="max-w-[60px]"
           />
-          <h4 className="text-base md:text-lg text-[#FFA400]">
+          <h4 className="text-sm md:text-base text-[#FFA400]">
             Metrik Progress
           </h4>
         </div>
@@ -187,7 +187,7 @@ const AboutUs = () => {
             alt="img"
             className="max-w-[60px]"
           />
-          <h4 className="text-base md:text-lg text-[#FFA400]">
+          <h4 className="text-sm md:text-base text-[#FFA400]">
             Papan Peringkat
           </h4>
         </div>
@@ -209,7 +209,7 @@ const AboutUs = () => {
             alt="img"
             className="max-w-[60px]"
           />
-          <h4 className="text-base md:text-lg text-[#FFA400]">
+          <h4 className="text-sm md:text-base text-[#FFA400]">
             Tanpa Integrasi Bank
           </h4>
         </div>
