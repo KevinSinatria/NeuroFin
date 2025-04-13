@@ -22,6 +22,7 @@ import { NumericFormat } from "react-number-format";
 // eslint-disable-next-line no-unused-vars
 import { AnimatePresence, motion } from "motion/react";
 import { showToast } from "../../alerts/alerts";
+import { useAuth } from "../../../../contexts/AuthContext";
 
 const SpendingTable = () => {
   const [data, setData] = useState([]);
@@ -47,6 +48,8 @@ const SpendingTable = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const totalPage = Math.ceil(filteredData.length / itemsPerPage);
   const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+
+  const { user } = useAuth();
 
   const fetchData = async () => {
     try {
@@ -75,6 +78,15 @@ const SpendingTable = () => {
   useEffect(() => {
     setFilteredData(data);
   }, [data]);
+
+  useEffect(() => {
+    if (user?.id && createValue.id_user !== user.id) {
+      setCreateValue((prevState) => ({
+        ...prevState,
+        id_user: user.id,
+      }));
+    }
+  }, [user, createValue]);
 
   // Filter data berdasarkan parameter yang ada
   useEffect(() => {
@@ -197,7 +209,7 @@ const SpendingTable = () => {
   const updateHandler = async (itemId, e) => {
     e.preventDefault();
     // eslint-disable-next-line no-unused-vars
-    const { expenseid, createdAt, updatedAt, ...editData } = editValue;
+    const { expenseid, id_user, createdAt, updatedAt, ...editData } = editValue;
     try {
       await updateSpendingData(itemId, editData);
       showToast({ title: "Berhasil mengubah data!" });

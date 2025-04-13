@@ -1,11 +1,30 @@
 import React, { createContext, useContext, useState } from "react";
 import NeoLogo from "../../assets/icon/NeoLogoHD.png";
 import { CaretLineLeft, CaretLineRight, SignOut } from "@phosphor-icons/react";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
+import { useAuth } from "../../../contexts/AuthContext";
+import { logout } from "../../api/authApi";
+import { showToast } from "../alerts/alerts";
 
 const SidebarContext = createContext();
 export const Sidebar = ({ children }) => {
   const [expanded, setExpanded] = useState(false);
+  const { setIsAuthenticated, setUser } = useAuth();
+  const navigate = useNavigate();
+
+  const logoutHandler = async () => {
+    try {
+      const response = await logout();
+      showToast({ title: `${response.data.message}` });
+
+      setIsAuthenticated(false);
+      setUser(null);
+      navigate("/login");
+    } catch (err) {
+      console.error("Logout gagal:", err);
+    }
+  };
+
   return (
     <aside
       className={`h-screen md:sticky fixed z-300 md:z-90 left-0 top-0 transition-all duration-300 ${
@@ -44,6 +63,7 @@ export const Sidebar = ({ children }) => {
         <div className="border-t border-t-gray-600">
           <a
             className={`relative flex justify-center group transition-all items-center py-2 px-3 mx-1 my-1 font-medium rounded-md cursor-pointer hover:bg-red-100`}
+            onClick={logoutHandler}
           >
             <SignOut
               size={20}

@@ -84,7 +84,7 @@ const AboutUs = () => {
           </p>
         </motion.div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 px-50 py-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 px-0 md:px-50 py-10">
         <div className="flex flex-col items-center justify-center justify-self-center text-center max-w-[50px]">
           <motion.img
             initial={{

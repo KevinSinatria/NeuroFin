@@ -5,8 +5,8 @@ import { motion } from "motion/react";
 
 const FinTest = () => {
   return (
-    <section className="flex gap-2 items-center scroll-mt-20" id="finTest">
-      <div className="flex flex-col flex-1 py-16 md:py-24 lg:py-30 px-16 md:px-28 lg:px-36 gap-4">
+    <section className="flex md:flex-row flex-col-reverse gap-2 items-center scroll-mt-20" id="finTest">
+      <div className="flex flex-col flex-1 py-0 md:py-24 lg:py-30 px-16 md:px-28 lg:px-36 gap-4">
         <motion.h2
           initial={{ opacity: 0, x: "-100%" }}
           whileInView={{ opacity: 1, x: "0%" }}
@@ -46,7 +46,7 @@ const FinTest = () => {
           *gratis
         </motion.p>
       </div>
-      <div className="md:flex-1 md:p-16 md:flex md:items-center hidden">
+      <div className="md:flex-1 md:p-4 lg:p-16 md:flex md:items-center flex justify-center items-center mt-20 md:mt-0">
         <motion.img
           initial={{ opacity: 0, y: "60%", clipPath: "inset(0% 0% 100% 0%)" }}
           whileInView={{ opacity: 1, y: "0%", clipPath: "inset(0% 0% 0% 0%)" }}
@@ -54,7 +54,7 @@ const FinTest = () => {
           viewport={{ once: true }}
           src={FinTestImg}
           alt="Image"
-          className="md:max-w-[100%] md:block hidden"
+          className="max-w-[100%] md:block"
         />
       </div>
     </section>

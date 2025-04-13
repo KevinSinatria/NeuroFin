@@ -1,52 +1,58 @@
-import axios from "axios";
-
-const API_URL = "http://localhost:9000/expenses";
+import { api } from "./baseApi";
 
 export const getSpendingData = async () => {
   try {
-    const response = await axios.get(API_URL);
+    const response = await api.get("/expenses");
     return response.data.data.expenses;
   } catch (error) {
-    console.error("Error fetching data:", error);
+    if (import.meta.env.DEV) {
+      console.error("Error fetching data:", error);
+    }
     throw error;
   }
 };
 
 export const createSpendingData = async (itemData) => {
   try {
-    const response = await axios.post(API_URL, itemData);
+    const response = await api.post("/expenses", itemData);
     return response.data;
   } catch (error) {
-    console.error(
-      "Error creating data:",
-      error.response ? error.response.data : error.message
-    );
+    if (import.meta.env.DEV) {
+      console.error(
+        "Error creating data:",
+        error.response ? error.response.data : error.message
+      );
+    }
     throw error;
   }
 };
 
 export const updateSpendingData = async (itemId, itemData) => {
   try {
-    const response = await axios.put(API_URL + "/" + itemId, itemData);
+    const response = await api.put("/expenses/" + itemId, itemData);
     return response.data;
   } catch (error) {
-    console.error(
-      "Error updating data:",
-      error.response ? error.response.data : error.message
-    );
+    if (import.meta.env.DEV) {
+      console.error(
+        "Error updating data:",
+        error.response ? error.response.data : error.message
+      );
+    }
     throw error;
   }
 };
 
 export const deleteSpendingData = async (itemId) => {
   try {
-    const response = await axios.delete(API_URL + "/" + itemId);
+    const response = await api.delete("/expenses/" + itemId);
     return response.data;
   } catch (error) {
-    console.error(
-      "Error deleting data:",
-      error.response ? error.response.data : error.message
-    );
-    throw error;
+    if (import.meta.env.DEV) {
+      console.error(
+        "Error deleting data:",
+        error.response ? error.response.data : error.message
+      );
+      throw error;
+    }
   }
 };
