@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_KEY = "<YOUR API KEY (Marketaux)>";
+const API_KEY = "acX7nHW5bvC8vOKpES1hWCHwIKhmZ4IspZ7OydD6";
 
 export const getFinanceNews = async () => {
   try {

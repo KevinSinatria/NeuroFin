@@ -8,9 +8,12 @@ import {
   LightbulbFilament,
   User,
 } from "@phosphor-icons/react";
+import { useAuth } from "../contexts/AuthContext";
 
 const LayoutDashboard = () => {
   const location = useLocation();
+  const { isLoading } = useAuth();
+
   const menuItems = [
     { id: 1, label: "Dashboard", icon: House, path: "/dashboard" },
     {
@@ -27,6 +30,14 @@ const LayoutDashboard = () => {
     },
     { id: 4, label: "Akun Saya", icon: User, path: "/dashboard/myaccount" },
   ];
+
+  if (isLoading)
+    return (
+      <div className="flex items-center justify-center max-h-full min-h-screen bg-slate-100">
+        <p>Memuat...</p>
+      </div>
+    );
+
   return (
     <div className="flex max-h-full min-h-screen bg-slate-100">
       <Sidebar>
@@ -51,7 +62,7 @@ const LayoutDashboard = () => {
           <header className="sticky top-0 z-100">
             <Header />
           </header>
-          <main className="flex-1 overflow-y-auto pt-10 pb-3 px-3 md:py-4 md:px-8">
+          <main className="flex-1 overflow-y-auto pt-10 pb-3 px-2 md:py-4 md:px-8">
             <Outlet />
           </main>
         </div>

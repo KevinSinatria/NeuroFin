@@ -47,7 +47,7 @@ const Content = () => {
   return (
     <div className="flex flex-col gap-4 bg-slate-100 lg:py-4 lg:px-4 w-auto overflow-y-auto">
       <div className="bg-white py-2 px-1 w-full h-83 rounded-xl shadow-lg">
-        <SpendingChart viewMode="expenses" />
+        <SpendingChart viewMode="overview" />
       </div>
       <div>
         <h2 className="text-sm md:text-base font-semibold mb-3 text-gray-700">
@@ -63,7 +63,7 @@ const Content = () => {
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white py-2 px-1 w-full h-full rounded-xl hover:bg-slate-100 shadow-xl"
+                className="bg-white py-2 px-1 w-full h-full rounded-xl hover:bg-slate-50 hover:ring hover:ring-gray-500 shadow-xl"
               >
                 {item.image_url && (
                   <img

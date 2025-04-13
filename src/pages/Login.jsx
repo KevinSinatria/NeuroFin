@@ -1,19 +1,46 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Envelope, Eye, EyeSlash, LockKey, User } from "@phosphor-icons/react";
-import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router";
+import { login } from "../api/authApi";
+import { showToast } from "../components/alerts/alerts";
+import { useAuth } from "../../contexts/AuthContext";
+import { api } from "../api/baseApi";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [loginValue, setLoginValue] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { setIsAuthenticated, isAuthenticated, setUser } = useAuth();
 
-  const { setIsAuthenticated } = useAuth();
+  useEffect(() => {
+    setIsAuthenticated(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const handleLogin = () => {
-    setIsAuthenticated(true);
-    navigate("/dashboard");
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/dashboard");
+    }
+  }, [isAuthenticated, navigate]);
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    try {
+      const response = await login(loginValue);
+      showToast({ title: `${response.data.message}` });
+
+      const user = await api.get("/me");
+      setUser(user.data.data);
+      setIsAuthenticated(true);
+    } catch (err) {
+      showToast({ title: err.message, icon: "error" });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -33,12 +60,19 @@ const Login = () => {
               !
             </h1>
           </div>
-          <form action="" className="flex flex-col w-full justify-center px-2">
+          <form
+            onSubmit={handleLogin}
+            className="flex flex-col w-full justify-center px-2"
+          >
             <div className="flex items-center gap-4 sm:gap-6">
               <Envelope size={35} sm:size={45} weight="duotone" />
               <input
                 type="email"
                 placeholder="Email"
+                value={loginValue.email || ""}
+                onChange={(e) =>
+                  setLoginValue({ ...loginValue, email: e.target.value })
+                }
                 className="w-full py-2 px-3 border-b-2 focus:border-b-blue-700 transition-all mb-6 sm:mb-8 focus:outline-none"
                 required
               />
@@ -48,6 +82,10 @@ const Login = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
+                value={loginValue.password || ""}
+                onChange={(e) =>
+                  setLoginValue({ ...loginValue, password: e.target.value })
+                }
                 className="w-full py-2 px-3 border-b-2 focus:border-b-blue-700 transition-all mb-6 sm:mb-8 focus:outline-none"
                 required
               />
@@ -59,20 +97,37 @@ const Login = () => {
                 {showPassword ? <EyeSlash size={25} /> : <Eye size={25} />}
               </button>
             </div>
-            <a
-              href="#"
-              className="text-end text-[10px] sm:text-xs mb-3 sm:mb-4 hover:underline font-semibold text-blue-700 md:hover:text-blue-800 transition-all duration-300"
-            >
-              Lupa Password?
-            </a>
             <button
-              className="rounded-lg py-1 sm:py-2 mb-4 sm:mb-6 bg-sky-500 font-medium active:scale-97 hover:bg-sky-600 transition-all duration-300 text-white"
-              onClick={(e) => {
-                e.preventDefault();
-                handleLogin();
-              }}
+              className="flex items-center justify-center rounded-lg py-1 sm:py-2 mb-4 sm:mb-6 bg-sky-500 font-medium active:scale-97 hover:bg-sky-600 transition-all duration-300 text-white"
+              type="submit"
             >
-              Masuk
+              {!isLoading ? (
+                "Masuk"
+              ) : (
+                <>
+                  <svg
+                    className="animate-spin h-5 w-5 text-white mr-2"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                    ></path>
+                  </svg>
+                  Memuat...
+                </>
+              )}
             </button>
             <p className="text-center text-xs sm:text-sm">
               Belum punya akun? Ayo{" "}

@@ -42,7 +42,7 @@ const Navbar = () => {
               src={NeoLogo}
               alt="NeoLogo"
               className="max-w-[144px] lg:max-w-[168px] xl:max-w-[192px]"
-            />
+            /> 
           </a>
         </div>
 
@@ -105,7 +105,7 @@ const Navbar = () => {
             <button>
               <a
                 href="/login"
-                className="font-semibold border-2 text-sm border-[#38C3F5] rounded-full text-[#38C3F5] px-6 py-2 lg:px-8 hover:bg-[#38C3F5] hover:text-white transition-all duration-200"
+                className="font-semibold border-2 text-sm md:text-base border-[#38C3F5] rounded-full text-[#38C3F5] px-6 py-2 lg:px-8 hover:bg-[#38C3F5] hover:text-white transition-all duration-200"
                 onClick={() => setIsOpen(false)}
               >
                 Masuk
@@ -114,7 +114,7 @@ const Navbar = () => {
             <button>
               <a
                 href="/register"
-                className="font-semibold border-2 text-sm border-[#38C3F5] rounded-full px-6 py-2 lg:px-8 bg-[#38C3F5] text-white hover:bg-[#32B4E3] transition-all duration-200"
+                className="font-semibold border-2 text-sm md:text-base border-[#38C3F5] rounded-full px-6 py-2 lg:px-8 bg-[#38C3F5] text-white hover:bg-[#32B4E3] transition-all duration-200"
                 onClick={() => setIsOpen(false)}
               >
                 Daftar
