@@ -50,6 +50,8 @@ Aplikasi akan berjalan di:
 http://localhost:5173
 ```
 
+<hr />
+
 Kontributor:
 <br />
 <b>-Kevin Sinatria Budiman (Front End)</b> 
