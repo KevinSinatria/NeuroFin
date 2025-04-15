@@ -29,8 +29,25 @@ Kamu bisa melihat tampilan aplikasi melalui link berikut:
 ### 1. Clone Repository
 
 ```bash
-git clone [https://github.com/kevinsinatria/nama-repo-fe.git](https://github.com/KevinSinatria/NeuroFin.git)
-cd nama-repo-fe
+git clone https://github.com/KevinSinatria/NeuroFin.git
+cd NeuroFin
+```
+
+### 2. Install Dependencies
+```bash
+npm install
+```
+
+### 3. Jalankan Project Secara Lokal
+Pastikan kamu sudah menjalankan backend API terlebih dahulu (misalnya di http://localhost:9000), lalu:
+
+```bash
+npm run dev
+```
+
+Aplikasi akan berjalan di:
+```bash
+http://localhost:5173
 ```
 
 Kontributor:
