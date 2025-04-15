@@ -29,7 +29,7 @@ Kamu bisa melihat tampilan aplikasi melalui link berikut:
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/kevinsinatria/nama-repo-fe.git
+git clone [https://github.com/kevinsinatria/nama-repo-fe.git](https://github.com/KevinSinatria/NeuroFin.git)
 cd nama-repo-fe
 ```
 
