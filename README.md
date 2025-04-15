@@ -52,8 +52,8 @@ http://localhost:5173
 
 <hr />
 
-Kontributor:
+## Kontributor:
 <br />
-<b>-[https://github.com/KevinSinatria](Kevin Sinatria Budiman (Front End))</b> 
+### -[https://github.com/KevinSinatria](Kevin Sinatria Budiman (Front End))</b> 
 <br/>
 <b>-Waqqir Humaid Al Qais (UI UX)</b>
