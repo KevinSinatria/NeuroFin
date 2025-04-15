@@ -39,7 +39,7 @@ npm install
 ```
 
 ### 3. Jalankan Project Secara Lokal
-Pastikan kamu sudah menjalankan backend API NeuroFin terlebih dahulu (misalnya di http://localhost:9000), lalu:
+Pastikan kamu sudah menjalankan [backend API NeuroFin](https://github.com/RayanKhairullah/CapstoneBE) terlebih dahulu (misalnya di http://localhost:9000), lalu:
 
 ```bash
 npm run dev
