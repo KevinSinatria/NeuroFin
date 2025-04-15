@@ -1,8 +1,4 @@
-<h1>NeuroFin</h1>
-
-NeuroFin adalah aplikasi web yang membantu remaja mencatat pengeluaran dan membangun kebiasaan finansial yang baik. Projek ini dikembangkan sebagai Capstone Project di Coding Camp powered by DBS Foundation 2025.
-
-# 💸 Aplikasi Pengeluaran Harian – Frontend
+# 💸 NeuroFin – Frontend
 
 Frontend dari aplikasi pengelolaan pengeluaran harian yang membantu pengguna mencatat dan memantau arus uang masuk & keluar. Dibangun menggunakan **ReactJS** dan **Tailwind CSS**, serta terintegrasi dengan backend API.
 
@@ -13,13 +9,12 @@ Frontend dari aplikasi pengelolaan pengeluaran harian yang membantu pengguna men
   - Kategori (Makanan, Transportasi, Hiburan, dll.)
   - Bulan & tahun
   - Jumlah uang keluar (minimum - maksimum)
-- 🔍 Pencarian realtime & responsif
 - 🎯 UI ringan, cepat, dan mobile-friendly
 
 ## 🖼️ Preview Antarmuka
+Kamu bisa melihat tampilan aplikasi melalui link berikut:
 
-<!-- Tambahkan screenshot di sini (opsional) -->
-<!-- ![Preview UI](./preview.png) -->
+👉 [Lihat Demo Aplikasi](https://neurofin.netlify.app)
 
 ## 🛠️ Teknologi yang Digunakan
 
