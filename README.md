@@ -54,7 +54,7 @@ http://localhost:5173
 
 ## Kontributor:
 <br />
-## 👥 Kontributor
+👥 Kontributor
 
 Terima kasih kepada semua yang telah berkontribusi:
 
