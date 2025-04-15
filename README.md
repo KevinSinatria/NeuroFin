@@ -52,9 +52,8 @@ http://localhost:5173
 
 <hr />
 
-## Kontributor:
+## 👥 Kontributor:
 <br />
-👥 Kontributor
 
 Terima kasih kepada semua yang telah berkontribusi:
 
