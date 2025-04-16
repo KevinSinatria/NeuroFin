@@ -18,17 +18,11 @@ const LayoutDashboard = () => {
     { id: 1, label: "Dashboard", icon: House, path: "/dashboard" },
     {
       id: 2,
-      label: "Tantangan",
-      icon: LightbulbFilament,
-      path: "/dashboard/challenge",
-    },
-    {
-      id: 3,
       label: "Pengeluaran Harian",
       icon: Cardholder,
       path: "/dashboard/spendingdiary",
     },
-    { id: 4, label: "Akun Saya", icon: User, path: "/dashboard/myaccount" },
+    { id: 3, label: "Akun Saya", icon: User, path: "/dashboard/myaccount" },
   ];
 
   if (isLoading)

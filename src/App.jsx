@@ -13,35 +13,36 @@ import TermsAndConditions from "./pages/TermsAndConditions";
 import Home from "./pages/auth/dashboard/Home";
 import SpendingDiary from "./pages/auth/dashboard/SpendingDiary";
 import MyAccount from "./pages/auth/dashboard/MyAccount";
-import Challenge from "./components/Dashboard/Challenge/ChallengeTable";
 import EmailVerify from "./pages/EmailVerify";
+import { AuthProvider } from "../contexts/AuthContext";
 
 function App() {
   return (
-    <Routes>
-      {/* Public Pages */}
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/financialcheck" element={<FinancialCheck />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/emailverify" element={<EmailVerify />} />
-      <Route path="/termsandconditions" element={<TermsAndConditions />} />
+    <AuthProvider>
+      <Routes>
+        {/* Public Pages */}
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/financialcheck" element={<FinancialCheck />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/emailverify" element={<EmailVerify />} />
+        <Route path="/termsandconditions" element={<TermsAndConditions />} />
 
-      {/* Private Dashboard Pages */}
-      <Route
-        path="/dashboard"
-        element={
-          <PrivateRoute>
-            <LayoutDashboard />
-          </PrivateRoute>
-        }
-      >
-        <Route path="" element={<Home />} />
-        <Route path="challenge" element={<Challenge />} />
-        <Route path="spendingdiary" element={<SpendingDiary />} />
-        <Route path="myaccount" element={<MyAccount />} />
-      </Route>
-    </Routes>
+        {/* Private Dashboard Pages */}
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <LayoutDashboard />
+            </PrivateRoute>
+          }
+        >
+          <Route path="" element={<Home />} />
+          <Route path="spendingdiary" element={<SpendingDiary />} />
+          <Route path="myaccount" element={<MyAccount />} />
+        </Route>
+      </Routes>
+    </AuthProvider>
   );
 }
 

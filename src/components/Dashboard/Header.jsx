@@ -36,9 +36,6 @@ const Header = () => {
             <h1 className="md:text-xl font-semibold">{headerTitle}</h1>
           </div>
           <div className="flex gap-4">
-            <button aria-label="Toggle dark mode">
-              <Sun size={28} className="bg-slate-100 p-1 rounded-full" />
-            </button>
             <a
               href="/dashboard/myaccount"
               className="group"
