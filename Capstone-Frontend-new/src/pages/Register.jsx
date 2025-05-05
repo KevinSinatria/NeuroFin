@@ -43,7 +43,7 @@ const Register = () => {
         state: { email: registerValue.email },
       });
     } catch (err) {
-      showToast({ title: `${toString(err.message)}`, icon: "error" });
+      showToast({ title: err.message, icon: "error" });
     } finally {
       setIsLoading(false);
     }
@@ -107,8 +107,9 @@ const Register = () => {
                 placeholder="Password"
                 value={password}
                 onChange={async (e) => {
-                  await setPassword(e.target.value);
-                  setRegisterValue({ ...registerValue, password: password });
+                  const newPassword = e.target.value;
+                  setPassword(newPassword);
+                  setRegisterValue({ ...registerValue, password: newPassword });
                 }}
                 className="w-full py-2 px-3 border-b-2 focus:border-b-blue-700 transition-all mb-4 sm:mb-6 focus:outline-none"
                 minLength="8"
@@ -204,7 +205,7 @@ const Register = () => {
                       cy="12"
                       r="10"
                       stroke="currentColor"
-                      stroke-width="4"
+                      strokeWidth="4"
                     ></circle>
                     <path
                       className="opacity-75"

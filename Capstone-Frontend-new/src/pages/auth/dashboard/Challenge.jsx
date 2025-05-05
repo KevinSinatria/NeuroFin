@@ -1,5 +1,5 @@
 import React from "react";
-import Content from "../../../components/Dashboard/Challenge/Content";
+import Content from "../../../components/Dashboard/Challenge/ChallengeTable.jsx";
 
 const Challenge = () => {
   return <Content />;

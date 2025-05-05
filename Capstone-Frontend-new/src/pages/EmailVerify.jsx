@@ -29,11 +29,11 @@ const EmailVerify = () => {
     setIsLoading(true);
     try {
       const response = await verify(emailVerifyValue);
-      showToast({ title: `${response.data.message}` });
+      showToast({ title: `${response.message}` });
 
       navigate("/login");
     } catch (err) {
-      showToast({ title: `${toString(err.message)}`, icon: "error" });
+      showToast({ title: err.message, icon: "error" });
     } finally {
       setIsLoading(false);
     }
@@ -83,7 +83,7 @@ const EmailVerify = () => {
                       cy="12"
                       r="10"
                       stroke="currentColor"
-                      stroke-width="4"
+                      strokeWidth="4"
                     ></circle>
                     <path
                       className="opacity-75"

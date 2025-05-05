@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import { AuthProvider } from "../contexts/AuthContext";
 import PrivateRoute from "../routes/PrivateRoute";
 import LayoutDashboard from "../layouts/LayoutDashboard";
 
@@ -14,8 +13,8 @@ import TermsAndConditions from "./pages/TermsAndConditions";
 import Home from "./pages/auth/dashboard/Home";
 import SpendingDiary from "./pages/auth/dashboard/SpendingDiary";
 import MyAccount from "./pages/auth/dashboard/MyAccount";
-import Challenge from "./components/Dashboard/Challenge/ChallengeTable";
 import EmailVerify from "./pages/EmailVerify";
+import { AuthProvider } from "../contexts/AuthContext";
 
 function App() {
   return (
@@ -39,7 +38,6 @@ function App() {
           }
         >
           <Route path="" element={<Home />} />
-          <Route path="challenge" element={<Challenge />} />
           <Route path="spendingdiary" element={<SpendingDiary />} />
           <Route path="myaccount" element={<MyAccount />} />
         </Route>

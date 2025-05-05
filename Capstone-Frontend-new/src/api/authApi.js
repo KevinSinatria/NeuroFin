@@ -1,31 +1,46 @@
-import axios from "axios";
-
-const API_URL = "http://localhost:9000";
+import { api } from "./baseApi";
 
 export const register = async (userData) => {
   try {
-    const response = await axios.post(API_URL + "/register", userData);
+    const response = await api.post("/register", userData);
     return response;
   } catch (error) {
-    console.error(
-      "Error creating data:",
-      error.response ? error.response.data.message : error.message
-    );
-    throw new Error(error.response.data.message);
+    const errorMsg = error.response?.data?.message || error.message;
+    console.error("Error saat daftar email:", errorMsg);
+    throw new Error(errorMsg);
   }
 };
 
 export const verify = async (userData) => {
   try {
-    const response = await axios.post(API_URL + "/verify-email", userData);
-    return response;
+    const response = await api.post("/verify-email", userData);
+    return response.data;
   } catch (error) {
-    console.error(
-      "Error creating data:",
-      error.response ? error.response.data.message : error.message
-    );
-    throw new Error(error.response.data.message);
+    const errorMsg = error.response?.data?.message || error.message;
+    console.error("Error saat verifikasi email:", errorMsg);
+    throw new Error(errorMsg);
   }
 };
 
+export const login = async (userData) => {
+  try {
+    const response = await api.post("/login", userData);
+    return response;
+  } catch (error) {
+    const errorMsg = error.response?.data?.message || error.message;
+    console.error("Error saat login:", errorMsg);
+    throw new Error(errorMsg);
+  }
+};
 
+export const logout = async () => {
+  try {
+    const response = await api.post("/logout", {});
+    return response;
+  } catch (error) {
+    console.error(
+      "Logout gagal:",
+      error.response ? error.response.data.message : error.message
+    );
+  }
+};

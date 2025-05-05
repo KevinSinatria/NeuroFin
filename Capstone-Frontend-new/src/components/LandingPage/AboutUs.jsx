@@ -1,10 +1,7 @@
 import React from "react";
 import bank from "../../assets/img/AboutUs/bank.png";
 import freeTest from "../../assets/img/AboutUs/free-test.png";
-import gamifiedChallenges from "../../assets/img/AboutUs/gamified-challenges.png";
-import leaderboards from "../../assets/img/AboutUs/leaderboards.png";
 import metrikProgress from "../../assets/img/AboutUs/metrik-progress.png";
-import OCR from "../../assets/img/AboutUs/OCR.png";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "motion/react";
 
@@ -84,7 +81,7 @@ const AboutUs = () => {
           </p>
         </motion.div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 px-50 py-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-0 md:px-50 py-10">
         <div className="flex flex-col items-center justify-center justify-self-center text-center max-w-[50px]">
           <motion.img
             initial={{
@@ -105,48 +102,7 @@ const AboutUs = () => {
           />
           <h4 className="text-sm md:text-base text-[#FFA400]">Test Gratis</h4>
         </div>
-        <div className="flex flex-col items-center justify-center justify-self-center text-center max-w-[50px]">
-          <motion.img
-            initial={{
-              opacity: 0,
-              y: "100%",
-              clipPath: "inset(0% 0% 100% 0%)",
-            }}
-            whileInView={{
-              opacity: 1,
-              y: "0%",
-              clipPath: "inset(0% 0% 0% 0%)",
-            }}
-            transition={{ duration: 0.2, delay: 0.3 }}
-            viewport={{ once: true }}
-            src={gamifiedChallenges}
-            alt="img"
-            className="max-w-[60px]"
-          />
-          <h4 className="text-sm md:text-base text-[#FFA400]">
-            Tantangan Gamifikasi
-          </h4>
-        </div>
-        <div className="flex flex-col items-center justify-center justify-self-center text-center max-w-[50px]">
-          <motion.img
-            initial={{
-              opacity: 0,
-              y: "100%",
-              clipPath: "inset(0% 0% 100% 0%)",
-            }}
-            whileInView={{
-              opacity: 1,
-              y: "0%",
-              clipPath: "inset(0% 0% 0% 0%)",
-            }}
-            transition={{ duration: 0.2, delay: 0.5 }}
-            viewport={{ once: true }}
-            src={OCR}
-            alt="img"
-            className="max-w-[60px]"
-          />
-          <h4 className="text-sm md:text-base text-[#FFA400]">OCR</h4>
-        </div>
+        
         <div className="flex flex-col items-center justify-center justify-self-center text-center max-w-[50px]">
           <motion.img
             initial={{
@@ -167,28 +123,6 @@ const AboutUs = () => {
           />
           <h4 className="text-sm md:text-base text-[#FFA400]">
             Metrik Progress
-          </h4>
-        </div>
-        <div className="flex flex-col items-center justify-center justify-self-center text-center max-w-[50px]">
-          <motion.img
-            initial={{
-              opacity: 0,
-              y: "100%",
-              clipPath: "inset(0% 0% 100% 0%)",
-            }}
-            whileInView={{
-              opacity: 1,
-              y: "0%",
-              clipPath: "inset(0% 0% 0% 0%)",
-            }}
-            transition={{ duration: 0.2, delay: 0.9 }}
-            viewport={{ once: true }}
-            src={leaderboards}
-            alt="img"
-            className="max-w-[60px]"
-          />
-          <h4 className="text-sm md:text-base text-[#FFA400]">
-            Papan Peringkat
           </h4>
         </div>
         <div className="flex flex-col items-center justify-center justify-self-center text-center max-w-[50px]">
