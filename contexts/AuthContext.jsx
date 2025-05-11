@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
         const res = await api.get("/me");
         setUser(res.data.data);
         setIsAuthenticated(true);
-        
+
         // eslint-disable-next-line no-unused-vars
       } catch (err) {
         setIsAuthenticated(false);
@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     // Inisial cek
-    checkAuth();
+    setTimeout(checkAuth(), 300);
 
     // Check ulang token setiap 5 menit
     const interval = setInterval(() => {
