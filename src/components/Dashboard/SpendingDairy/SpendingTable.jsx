@@ -23,9 +23,11 @@ import { NumericFormat } from "react-number-format";
 import { AnimatePresence, motion } from "motion/react";
 import { showToast } from "../../alerts/alerts";
 import { useAuth } from "../../../../contexts/AuthContext";
+import { SyncLoader } from "react-spinners";
 
 const SpendingTable = () => {
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [filteredData, setFilteredData] = useState([]);
   const [filterTrigger, setFilterTrigger] = useState(0);
   const [showFilter, setShowFilter] = useState(false);
@@ -52,6 +54,7 @@ const SpendingTable = () => {
   const { user } = useAuth();
 
   const fetchData = async () => {
+    setIsLoading(true);
     try {
       const result = await getSpendingData();
 
@@ -64,6 +67,8 @@ const SpendingTable = () => {
     } catch (error) {
       console.error("Error fetching data", error);
       setData([]);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -347,7 +352,15 @@ const SpendingTable = () => {
             </tr>
           </thead>
           <tbody className="bg-white">
-            {currentItems.length !== 0 ? (
+            {isLoading ? (
+              <tr>
+                <td colSpan="9" className="text-center">
+                  <div className="flex justify-center items-center">
+                    <SyncLoader color="#000" size={24} />
+                  </div>
+                </td>
+              </tr>
+            ) : currentItems.length !== 0 ? (
               currentItems.map((item, index) => (
                 <tr
                   key={item.expenseid}
