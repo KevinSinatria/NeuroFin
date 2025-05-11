@@ -356,7 +356,7 @@ const SpendingTable = () => {
               <tr>
                 <td colSpan="9" className="text-center">
                   <div className="flex justify-center items-center">
-                    <SyncLoader color="#000" size={24} />
+                    <SyncLoader color="#000" size={12} />
                   </div>
                 </td>
               </tr>
