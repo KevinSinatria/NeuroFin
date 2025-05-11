@@ -25,6 +25,7 @@ export const verify = async (userData) => {
 export const login = async (userData) => {
   try {
     const response = await api.post("/login", userData);
+    localStorage.setItem("token", response.data.token);
     return response;
   } catch (error) {
     const errorMsg = error.response?.data?.message || error.message;
@@ -36,6 +37,7 @@ export const login = async (userData) => {
 export const logout = async () => {
   try {
     const response = await api.post("/logout", {});
+    localStorage.removeItem("token");
     return response;
   } catch (error) {
     console.error(
