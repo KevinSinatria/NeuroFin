@@ -10,6 +10,9 @@ export const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-  config.headers["X-Requested-With"] = "XMLHttpRequest";
+  const token = localStorage.getItem("token");
+  if (token) {
+    config.headers["Authorization"] = `Bearer ${token}`;
+  }
   return config;
 });
