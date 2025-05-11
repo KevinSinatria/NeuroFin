@@ -14,6 +14,7 @@ import {
   Legend,
   Filler,
 } from "chart.js";
+import { SyncLoader } from "react-spinners";
 
 ChartJS.register(
   BarElement,
@@ -41,7 +42,7 @@ export const SpendingChart = ({ viewMode }) => {
   const [chartData, setChartData] = useState(null);
   const [mode, setMode] = useState("harian");
   const [view, setView] = useState("overview");
-
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     setView(viewMode);
   }, [viewMode]);
@@ -59,102 +60,114 @@ export const SpendingChart = ({ viewMode }) => {
   ];
 
   useEffect(() => {
-    getSpendingData().then((expenses) => {
-      const grouped = {};
-      const categoriesSet = new Set();
+    setIsLoading(true);
+    getSpendingData()
+      .then((expenses) => {
+        if (expenses.length === 0) {
+          setChartData(null);
+          return;
+        }
 
-      expenses.forEach((item) => {
-        const dateKey = dayjs(item.transaction_date).format(
-          groupByFormat[mode]
+        const grouped = {};
+        const categoriesSet = new Set();
+
+        expenses.forEach((item) => {
+          const dateKey = dayjs(item.transaction_date).format(
+            groupByFormat[mode]
+          );
+          const category = item.category;
+          const expense = parseFloat(item.uangkeluar);
+          const income = parseFloat(item.uangmasuk);
+          categoriesSet.add(category);
+
+          if (!grouped[dateKey]) grouped[dateKey] = {};
+          if (!grouped[dateKey][category])
+            grouped[dateKey][category] = { keluar: 0, masuk: 0 };
+
+          grouped[dateKey][category].keluar += expense;
+          grouped[dateKey][category].masuk += income;
+        });
+
+        const sortedDates = Object.keys(grouped).sort(
+          (a, b) => dayjs(a).unix() - dayjs(b).unix()
         );
-        const category = item.category;
-        const expense = parseFloat(item.uangkeluar);
-        const income = parseFloat(item.uangmasuk);
-        categoriesSet.add(category);
+        const categories = Array.from(categoriesSet);
 
-        if (!grouped[dateKey]) grouped[dateKey] = {};
-        if (!grouped[dateKey][category])
-          grouped[dateKey][category] = { keluar: 0, masuk: 0 };
+        const categoryDatasets = categories.map((category) => ({
+          label: `Pengeluaran ${category}`,
+          data: sortedDates.map(
+            (date) => grouped[date]?.[category]?.keluar || 0
+          ),
+          borderColor: getRandomColor(),
+          backgroundColor: "rgba(0,0,0,0.1)",
+          tension: 0.4,
+          fill: true,
+        }));
 
-        grouped[dateKey][category].keluar += expense;
-        grouped[dateKey][category].masuk += income;
+        const totalExpenseDataset = {
+          label: `Total Pengeluaran (${mode}) (Rp)`,
+          data: sortedDates.map((date) => {
+            const kategoriObj = grouped[date] || {};
+            return Object.values(kategoriObj).reduce(
+              (acc, val) => acc + val.keluar,
+              0
+            );
+          }),
+          borderColor: "#FF6384",
+          backgroundColor: "rgba(255, 99, 132, 0.15)",
+          borderWidth: 4,
+          tension: 0.4,
+          fill: true,
+          pointRadius: 6,
+          pointBackgroundColor: "#fff",
+          pointBorderColor: "#FF6384",
+          pointHoverRadius: 8,
+        };
+
+        const totalIncomeDataset = {
+          label: `Total Pemasukan (${mode}) (Rp)`,
+          data: sortedDates.map((date) => {
+            const kategoriObj = grouped[date] || {};
+            return Object.values(kategoriObj).reduce(
+              (acc, val) => acc + val.masuk,
+              0
+            );
+          }),
+          borderColor: "#4CAF50",
+          backgroundColor: "rgba(76, 175, 80, 0.15)",
+          borderWidth: 4,
+          tension: 0.4,
+          fill: true,
+          pointRadius: 6,
+          pointBackgroundColor: "#fff",
+          pointBorderColor: "#4CAF50",
+          pointHoverRadius: 8,
+        };
+
+        if (view === "overview") {
+          setChartData({
+            labels: sortedDates,
+            datasets: [
+              totalIncomeDataset,
+              totalExpenseDataset,
+              ...categoryDatasets,
+            ],
+          });
+        } else if (view === "expenses") {
+          setChartData({
+            labels: sortedDates,
+            datasets: [totalExpenseDataset, ...categoryDatasets],
+          });
+        } else if (view === "compare") {
+          setChartData({
+            labels: sortedDates,
+            datasets: [totalIncomeDataset, totalExpenseDataset],
+          });
+        }
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-
-      const sortedDates = Object.keys(grouped).sort(
-        (a, b) => dayjs(a).unix() - dayjs(b).unix()
-      );
-      const categories = Array.from(categoriesSet);
-
-      const categoryDatasets = categories.map((category) => ({
-        label: `Pengeluaran ${category}`,
-        data: sortedDates.map((date) => grouped[date]?.[category]?.keluar || 0),
-        borderColor: getRandomColor(),
-        backgroundColor: "rgba(0,0,0,0.1)",
-        tension: 0.4,
-        fill: true,
-      }));
-
-      const totalExpenseDataset = {
-        label: `Total Pengeluaran (${mode}) (Rp)`,
-        data: sortedDates.map((date) => {
-          const kategoriObj = grouped[date] || {};
-          return Object.values(kategoriObj).reduce(
-            (acc, val) => acc + val.keluar,
-            0
-          );
-        }),
-        borderColor: "#FF6384",
-        backgroundColor: "rgba(255, 99, 132, 0.15)",
-        borderWidth: 4,
-        tension: 0.4,
-        fill: true,
-        pointRadius: 6,
-        pointBackgroundColor: "#fff",
-        pointBorderColor: "#FF6384",
-        pointHoverRadius: 8,
-      };
-
-      const totalIncomeDataset = {
-        label: `Total Pemasukan (${mode}) (Rp)`,
-        data: sortedDates.map((date) => {
-          const kategoriObj = grouped[date] || {};
-          return Object.values(kategoriObj).reduce(
-            (acc, val) => acc + val.masuk,
-            0
-          );
-        }),
-        borderColor: "#4CAF50",
-        backgroundColor: "rgba(76, 175, 80, 0.15)",
-        borderWidth: 4,
-        tension: 0.4,
-        fill: true,
-        pointRadius: 6,
-        pointBackgroundColor: "#fff",
-        pointBorderColor: "#4CAF50",
-        pointHoverRadius: 8,
-      };
-
-      if (view === "overview") {
-        setChartData({
-          labels: sortedDates,
-          datasets: [
-            totalIncomeDataset,
-            totalExpenseDataset,
-            ...categoryDatasets,
-          ],
-        });
-      } else if (view === "expenses") {
-        setChartData({
-          labels: sortedDates,
-          datasets: [totalExpenseDataset, ...categoryDatasets],
-        });
-      } else if (view === "compare") {
-        setChartData({
-          labels: sortedDates,
-          datasets: [totalIncomeDataset, totalExpenseDataset],
-        });
-      }
-    });
   }, [mode, view]);
 
   const options = {
@@ -212,22 +225,30 @@ export const SpendingChart = ({ viewMode }) => {
       <div className="w-full overflow-x-auto">
         <div className="min-w-[1000px] h-[250px]">
           {chartData ? (
-            <Line
-              data={chartData}
-              options={{
-                ...options,
-                maintainAspectRatio: false,
-                responsive: true,
-                scales: {
-                  y: {
-                    beginAtZero: true,
-                    position: "left",
+            isLoading ? (
+              <p className="text-center text-gray-500">
+                <SyncLoader color="#000" size={24} />
+              </p>
+            ) : (
+              <Line
+                data={chartData}
+                options={{
+                  ...options,
+                  maintainAspectRatio: false,
+                  responsive: true,
+                  scales: {
+                    y: {
+                      beginAtZero: true,
+                      position: "left",
+                    },
                   },
-                },
-              }}
-            />
+                }}
+              />
+            )
           ) : (
-            <p>Loading chart...</p>
+            <p className="text-center text-gray-500">
+              Data belum tersedia, silahkan input data pengeluaran
+            </p>
           )}
         </div>
       </div>
