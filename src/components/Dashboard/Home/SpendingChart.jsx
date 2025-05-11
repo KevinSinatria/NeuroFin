@@ -224,27 +224,25 @@ export const SpendingChart = ({ viewMode }) => {
 
       <div className="w-full overflow-x-auto">
         <div className="min-w-[1000px] h-[250px]">
-          {chartData ? (
-            isLoading ? (
-              <p className="text-center text-gray-500">
-                <SyncLoader color="#000" size={24} />
-              </p>
-            ) : (
-              <Line
-                data={chartData}
-                options={{
-                  ...options,
-                  maintainAspectRatio: false,
-                  responsive: true,
-                  scales: {
-                    y: {
-                      beginAtZero: true,
-                      position: "left",
-                    },
+          {isLoading ? (
+            <p className="text-center text-gray-500">
+              <SyncLoader color="#000" size={12} />
+            </p>
+          ) : chartData ? (
+            <Line
+              data={chartData}
+              options={{
+                ...options,
+                maintainAspectRatio: false,
+                responsive: true,
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                    position: "left",
                   },
-                }}
-              />
-            )
+                },
+              }}
+            />
           ) : (
             <p className="text-center text-gray-500">
               Data belum tersedia, silahkan input data pengeluaran
