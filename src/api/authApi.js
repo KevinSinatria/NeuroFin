@@ -36,7 +36,7 @@ export const login = async (userData) => {
 
 export const logout = async () => {
   try {
-    const response = await api.post("/logout", {});
+    const response = await api.post("/logout");
     localStorage.removeItem("token");
     return response;
   } catch (error) {
